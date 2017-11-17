@@ -65,7 +65,7 @@ export class AuthService {
         // const decodedToken = this._jwtHelperService.decodeToken(token);
         // console.log(decodedToken);
         // this.roles = decodedToken.data.roles;
-        // console.log(this.roles);
+        // console.log(this.roles); 
       });
   }
 
