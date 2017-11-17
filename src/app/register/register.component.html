@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-title>
+    Register
+  </mat-card-title>
+  <mat-card-content>
+    <form #f="ngForm">
+      <mat-form-field>
+        <input [(ngModel)]="username" name="username" matInput autocomplete="new-password" placeholder="Username" required>
+        <mat-error *ngIf="user.invalid">{{getErrorMessage(user)}}</mat-error>
+      </mat-form-field>
+
+      <br/>
+
+      <mat-form-field>
+        <input [(ngModel)]="password" name="password" type="password" autocomplete="new-password" matInput placeholder="Password"
+          required>
+        <mat-error *ngIf="pass.invalid">{{getErrorMessage(pass)}}</mat-error>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field>
+        <input [(ngModel)]="confirmPassword" #confirmPasswordEl="ngModel" name="confirmPassword" type="password" autocomplete="new-password"
+          matInput placeholder="Confirm Password" required>
+
+        <mat-error *ngIf="confPass.invalid">{{getErrorMessage(confPass)}}</mat-error>
+        <span matSuffix>
+          <mat-icon *ngIf="!confirmPasswordEl.pristine && !passwordsMatch()" color="warn">error</mat-icon>
+          <mat-icon *ngIf="!confirmPasswordEl.pristine  && passwordsMatch()" color="accent">done</mat-icon>
+        </span>
+      </mat-form-field>
+      <br/>
+
+      <br/>
+      <button [disabled]="!f.form.valid || !passwordsMatch()" type="submit" mat-raised-button (click)="register()" color="primary">Register</button>
+    </form>
+  </mat-card-content>
+</mat-card>

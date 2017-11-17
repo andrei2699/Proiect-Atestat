@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button (click)="goHome()">Home</button>
+    <span class="example-spacer"></span>
+    <button *ngIf="!hasToken" mat-button (click)="login()">Login</button>
+    <button *ngIf="hasToken" mat-button (click)="logout()">Logout</button>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+<router-outlet></router-outlet>
