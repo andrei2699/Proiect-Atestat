@@ -20,7 +20,7 @@
     <ng-container *ngFor="let colRole of roluri" matColumnDef="{{colRole}}">
       <mat-header-cell *matHeaderCellDef>{{colRole | uppercase}}</mat-header-cell>
       <mat-cell *matCellDef="let user">
-        <mat-checkbox [checked]="user.roles.indexOf(colRole)>=0" [id]="user.username + '.' + colRole" (change)="makeChanges($event)">&nbsp;</mat-checkbox>
+        <mat-checkbox [checked]="user.roles.indexOf(colRole)>=0" [id]="user.id + '.' + user.username + '.' + colRole" (change)="makeChanges($event)">&nbsp;</mat-checkbox>
       </mat-cell>
     </ng-container>
 

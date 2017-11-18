@@ -47,7 +47,31 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
 
   saveChanges() {
     this.changesMade = false;
-    this._dataGetterService.updateRoles(this.userAndRolesArr);
+    const array: User[] = [];
+
+    this.userAndRolesArr.forEach(element => {
+      const s = element.split('.');
+
+      const el = this.inArray(array, s[0]);
+      if (el == null) {
+        array.push(new User(s[0], s[1], s[2]));
+      } else {
+        el.addRole(s[2]);
+      }
+    });
+    console.log(array);
+    this._dataGetterService.updateRoles(array);
+    this.userAndRolesArr = [];
+  }
+
+  private inArray(arr: User[], id) {
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id == id) {
+        return arr[i];
+      }
+    }
+    return null;
   }
 
   canDeactivate() {
