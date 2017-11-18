@@ -1,6 +1,7 @@
 <?php
 
 namespace Firebase\JWT;
+
 use \DomainException;
 use \InvalidArgumentException;
 use \UnexpectedValueException;
@@ -69,7 +70,7 @@ class JWT
     public static function decode($jwt, $key, array $allowed_algs = array())
     {
         $timestamp = is_null(static::$timestamp) ? time() : static::$timestamp;
-
+        
         if (empty($key)) {
             throw new InvalidArgumentException('Key may not be empty');
         }
@@ -159,7 +160,7 @@ class JWT
         if ($keyId !== null) {
             $header['kid'] = $keyId;
         }
-        if ( isset($head) && is_array($head) ) {
+        if (isset($head) && is_array($head)) {
             $header = array_merge($head, $header);
         }
         $segments = array();
@@ -191,7 +192,7 @@ class JWT
             throw new DomainException('Algorithm not supported');
         }
         list($function, $algorithm) = static::$supported_algs[$alg];
-        switch($function) {
+        switch ($function) {
             case 'hash_hmac':
                 return hash_hmac($algorithm, $msg, $key, true);
             case 'openssl':
@@ -225,7 +226,7 @@ class JWT
         }
 
         list($function, $algorithm) = static::$supported_algs[$alg];
-        switch($function) {
+        switch ($function) {
             case 'openssl':
                 $success = openssl_verify($msg, $signature, $key, $algorithm);
                 if ($success === 1) {

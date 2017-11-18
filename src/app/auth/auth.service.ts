@@ -38,9 +38,6 @@ export class AuthService {
     const token = sessionStorage.getItem('token');
     this.isLoggedIn.next((token != null) && !this._jwtHelperService.isTokenExpired());
     this.name.next(sessionStorage.getItem('username'));
-
-
-
   }
 
   private getRoles(): string[] {

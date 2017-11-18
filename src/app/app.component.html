@@ -4,7 +4,7 @@
     <span class="example-spacer"></span>
     <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="login()">Login</button>
 
-    <span *ngIf="(_authService.isLoggedIn|async)" class="welcome-back-text">Welcome back, {{_authService.name|async}} !</span>
+    <span *ngIf="(_authService.isLoggedIn|async)">Welcome back, {{_authService.name|async}} !</span>
 
 
     <button *ngIf="(_authService.isLoggedIn|async)" mat-icon-button [matMenuTriggerFor]="menu">

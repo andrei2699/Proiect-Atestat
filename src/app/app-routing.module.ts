@@ -6,9 +6,13 @@ import { LoginComponent } from './login/login.component';
 import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent, canActivate: [AuthGuard] },
+  {
+    path: '', component: HomepageComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'denied', component: DeniedComponent },
@@ -16,6 +20,15 @@ const routes: Routes = [
     path: 'home',
     component: HomepageComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin-page',
+    component: AdminPageComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard],
+    data: {
+      roles: ['admin']
+    }
   },
   {
     path: 'test',
