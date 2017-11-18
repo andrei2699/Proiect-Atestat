@@ -11,12 +11,15 @@ import { TestComponent } from './test/test.component';
 import { AuthGuard } from './auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
-  MatFormFieldModule, MatSnackBarModule
+  MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { CdkTableModule } from '@angular/cdk/table';
+import { DataGetterService } from './data-getter.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     RegisterComponent,
     TestComponent,
     DeniedComponent,
-    HomepageComponent
+    HomepageComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +54,13 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatToolbarModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    MatMenuModule,
+    CdkTableModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatDialogModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, DataGetterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Manage Users</span>
+    <span class="example-spacer"></span>
+    <button mat-button [disabled]="!changesMade" (click)="saveChanges()">
+      <mat-icon>save</mat-icon>
+      <span>Save Changes</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+    </ng-container>
+
+    <ng-container *ngFor="let colRole of roluri" matColumnDef="{{colRole}}">
+      <mat-header-cell *matHeaderCellDef>{{colRole | uppercase}}</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <mat-checkbox [checked]="user.roles.indexOf(colRole)>=0" [id]="user.id + '.' + user.username + '.' + colRole" (change)="makeChanges($event)">&nbsp;</mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

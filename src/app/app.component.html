@@ -2,8 +2,26 @@
   <mat-toolbar-row>
     <button mat-button (click)="goHome()">Home</button>
     <span class="example-spacer"></span>
-    <button *ngIf="!hasToken" mat-button (click)="login()">Login</button>
-    <button *ngIf="hasToken" mat-button (click)="logout()">Logout</button>
+    <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="login()">Login</button>
+
+    <span *ngIf="(_authService.isLoggedIn|async)">Welcome back, {{_authService.name|async}} !</span>
+
+
+    <button *ngIf="(_authService.isLoggedIn|async)" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>build</mat-icon>
+        <span>Settings</span>
+      </button>
+
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
 
 </mat-toolbar>
