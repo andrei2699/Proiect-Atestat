@@ -8,10 +8,15 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  { path: '', component: HomepageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'denied', component: DeniedComponent },
-  { path: 'home', component: HomepageComponent },
+  {
+    path: 'home',
+    component: HomepageComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'test',
     component: TestComponent,

@@ -11,7 +11,7 @@ import { TestComponent } from './test/test.component';
 import { AuthGuard } from './auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
-  MatFormFieldModule, MatSnackBarModule
+  MatFormFieldModule, MatSnackBarModule, MatMenuModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -50,6 +50,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatToolbarModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
