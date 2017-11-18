@@ -10,22 +10,15 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  hasToken: boolean;
 
   constructor(private _authService: AuthService,
     private _jwtHelperService: JwtHelperService,
     private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        this.setHasToken();
-      }
-    });
   }
 
   logout() {
     this._authService.logout();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 
   login() {
@@ -34,9 +27,5 @@ export class AppComponent {
 
   goHome() {
     this.router.navigateByUrl('/home');
-  }
-
-  private setHasToken() {
-    this.hasToken = sessionStorage.getItem('token') != null;
   }
 }
