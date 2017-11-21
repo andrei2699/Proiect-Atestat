@@ -67,9 +67,6 @@ export class AuthService {
     return this._httpClient.post(this.registerUrl, JSON.stringify({ user: user, password: password }))
       .do((response: any) => {
         console.log(response);
-      })
-      .map((res) => {
-        return true;
       });
   }
 

@@ -3,6 +3,7 @@
     <button mat-button (click)="goHome()">Home</button>
     <span class="example-spacer"></span>
     <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="login()">Login</button>
+    <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="register()">Register</button>
 
     <span *ngIf="(_authService.isLoggedIn|async)">Welcome back, {{_authService.name|async}} !</span>
 

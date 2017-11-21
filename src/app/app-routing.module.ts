@@ -11,6 +11,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 const routes: Routes = [
   {
     path: '', component: HomepageComponent,
+    pathMatch: 'full',
     canActivate: [AuthGuard]
   },
   { path: 'login', component: LoginComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomepageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin-page',

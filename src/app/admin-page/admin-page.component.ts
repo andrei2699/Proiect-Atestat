@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CanComponentDeactivate } from '../auth/auth-guard';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ConfirmDialog } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-page',
@@ -21,53 +22,51 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
   roluri: string[] = [];
   dataSource = new MatTableDataSource();
 
-  userAndRolesArr: string[] = [];
+  infoArr: InfoClass[] = [];
 
   constructor(private _dataGetterService: DataGetterService, public dialog: MatDialog) {
     this._dataGetterService.getRoles().subscribe((res: string[]) => {
       this.displayedColumns.push(...res);
+      this.displayedColumns.push('action');
       this.roluri = res;
     });
   }
 
   ngAfterViewInit() {
-    this._dataGetterService.getUsers().subscribe((res: any[]) => {
-      this.dataSource.data = res;
-    });
+    this.loadData();
   }
 
   makeChanges(e) {
     this.changesMade = true;
     const text = e.source.id;
+    const values = text.split('.');
+    const id = values[0];
+    const role = values[1];
 
-    if (this.userAndRolesArr.indexOf(text) === -1) {
-      this.userAndRolesArr.push(text);
+    const el = this.inArray(this.infoArr, id, role);
+    if (el == null) {
+      this.infoArr.push(new InfoClass(id, role, e.source.checked));
+    } else {
+      el.value = e.source.checked;
     }
   }
 
   saveChanges() {
     this.changesMade = false;
-    const array: User[] = [];
 
-    this.userAndRolesArr.forEach(element => {
-      const s = element.split('.');
-
-      const el = this.inArray(array, s[0]);
-      if (el == null) {
-        array.push(new User(s[0], s[1], s[2]));
-      } else {
-        el.addRole(s[2]);
-      }
+    this._dataGetterService.updateRoles(this.infoArr).subscribe((res: any) => {
+      console.log(this.infoArr);
+      this.infoArr = [];
+      this.loadData();
+    }, (error) => {
+      console.log(error);
     });
-    console.log(array);
-    this._dataGetterService.updateRoles(array);
-    this.userAndRolesArr = [];
   }
 
-  private inArray(arr: User[], id) {
+  private inArray(arr: InfoClass[], id, role) {
 
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].id == id) {
+      if (arr[i].id == id && arr[i].role == role) {
         return arr[i];
       }
     }
@@ -78,7 +77,44 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
     if (this.changesMade) {
       return window.confirm('Discard changes?');
     }
-    return false;
+    return true;
+  }
+
+  delete(user) {
+
+    let dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '300px',
+      data: { message: 'adasdasdasd' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      // this._dataGetterService.deleteUser(user).subscribe((res: any) => {
+      //   this.loadData();
+      // }, (error) => {
+      //   console.log(error);
+      // });
+    });
+
+    console.log(user);
+
+  }
+
+  loadData() {
+    this._dataGetterService.getUsers().subscribe((res: any[]) => {
+      this.dataSource.data = res;
+    });
   }
 }
 
+export class InfoClass {
+  id: string;
+  role: string;
+  value: string;
+
+  constructor(i, r, v) {
+    this.id = i;
+    this.role = r;
+    this.value = v;
+  }
+}

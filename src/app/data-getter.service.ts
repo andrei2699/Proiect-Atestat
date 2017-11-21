@@ -19,9 +19,12 @@ export class DataGetterService {
   }
 
   updateRoles(usersAndRoles) {
-    const json = JSON.stringify(usersAndRoles);
-    console.log(json);
-    return this.http.post(this.manageUsersUrl, { action: 'change', data: json });
+    return this.http.post(this.manageUsersUrl, { action: 'change', data: usersAndRoles });
+  }
+
+  deleteUser(user) {
+
+    return this.http.post(this.manageUsersUrl, { action: 'delete', data: user });
   }
 
 }

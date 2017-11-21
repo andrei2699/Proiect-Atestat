@@ -25,6 +25,10 @@ export class AppComponent {
     this.router.navigateByUrl('/login');
   }
 
+  register() {
+    this.router.navigateByUrl('/register');
+  }
+
   goHome() {
     this.router.navigateByUrl('/home');
   }

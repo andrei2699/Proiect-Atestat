@@ -9,6 +9,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
+
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
 
@@ -20,7 +21,16 @@
     <ng-container *ngFor="let colRole of roluri" matColumnDef="{{colRole}}">
       <mat-header-cell *matHeaderCellDef>{{colRole | uppercase}}</mat-header-cell>
       <mat-cell *matCellDef="let user">
-        <mat-checkbox [checked]="user.roles.indexOf(colRole)>=0" [id]="user.id + '.' + user.username + '.' + colRole" (change)="makeChanges($event)">&nbsp;</mat-checkbox>
+        <mat-checkbox [checked]="user.roles.indexOf(colRole)>=0" [id]="user.id + '.' + colRole" (change)="makeChanges($event)">&nbsp;</mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> ACTION </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <button mat-icon-button (click)="delete(user)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
 

@@ -20,6 +20,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './data-getter.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,11 @@ import { DataGetterService } from './data-getter.service';
     DeniedComponent,
     HomepageComponent,
     AdminPageComponent,
+    ConfirmDialog
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -47,6 +49,7 @@ import { DataGetterService } from './data-getter.service';
       }
     }),
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -58,7 +61,11 @@ import { DataGetterService } from './data-getter.service';
     CdkTableModule,
     MatTableModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    AppRoutingModule
+  ],
+  entryComponents: [
+    ConfirmDialog
   ],
   providers: [AuthService, AuthGuard, DataGetterService],
   bootstrap: [AppComponent]
