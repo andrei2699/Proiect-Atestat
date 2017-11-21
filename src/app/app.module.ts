@@ -20,6 +20,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './data-getter.service';
+import { SubjectComponent } from './subject/subject.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { InformaticaComponent } from './informatica/informatica.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,14 @@ import { DataGetterService } from './data-getter.service';
     DeniedComponent,
     HomepageComponent,
     AdminPageComponent,
+    SubjectComponent,
+    InformaticaComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    FlexLayoutModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {

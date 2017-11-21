@@ -7,6 +7,8 @@ import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { InformaticaComponent } from './informatica/informatica.component';
+
 
 const routes: Routes = [
   {
@@ -15,6 +17,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'informatica',component: InformaticaComponent},
   { path: 'denied', component: DeniedComponent },
   {
     path: 'home',
