@@ -13,8 +13,6 @@ export class AuthService {
   private loginUrl = 'api/login.php';
   private registerUrl = 'api/register.php';
 
-
-
   // public isLoggedIn: Boolean = false;
   // public name: String = '';
 
@@ -32,9 +30,8 @@ export class AuthService {
 
   }
 
-
   updateUserStatus() {
-    console.log('updateUserStatus');
+    // console.log('updateUserStatus');
     const token = sessionStorage.getItem('token');
     this.isLoggedIn.next((token != null) && !this._jwtHelperService.isTokenExpired());
     this.name.next(sessionStorage.getItem('username'));

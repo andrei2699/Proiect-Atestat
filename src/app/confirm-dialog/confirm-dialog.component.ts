@@ -11,9 +11,9 @@ export class ConfirmDialog implements OnInit {
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any) {
     this.data = this.data || {};
-    this.data.title = this.data.title || 'Confirm';
-    // this.data.cancelText = this.data.cancelText || "Cancel";
-    this.data.confirmText = this.data.confirmText || 'Confirm';
+    this.data.title = this.data.title || 'Confirmare';
+    this.data.confirmText = this.data.confirmText || 'Confirmare';
+    this.data.cancelText = this.data.cancelText || 'Anulare';
     this.data.message = this.data.message || '?';
 
   }

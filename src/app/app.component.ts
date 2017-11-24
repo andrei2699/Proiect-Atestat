@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './Manage Users/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -21,15 +21,14 @@ export class AppComponent {
     this.router.navigateByUrl('/login');
   }
 
-  login() {
-    this.router.navigateByUrl('/login');
+  isRole(role) {
+    if (sessionStorage.getItem('token') == null) {
+      return false;
+    }
+    return this._authService.hasRoles([role]);
   }
 
-  register() {
-    this.router.navigateByUrl('/register');
-  }
-
-  goHome() {
-    this.router.navigateByUrl('/home');
+  goToLink(link) {
+    this.router.navigateByUrl('/' + link);
   }
 }

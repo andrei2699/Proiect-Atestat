@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CanComponentDeactivate } from '../auth/auth-guard';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ConfirmDialog } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialog } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-page',
@@ -18,14 +18,16 @@ import { ConfirmDialog } from '../confirm-dialog/confirm-dialog.component';
 export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate {
 
   changesMade: boolean;
-  displayedColumns = ['username'];
   roluri: string[] = [];
   dataSource = new MatTableDataSource();
-
+  displayedColumns = ['username'];
   infoArr: InfoClass[] = [];
 
+  requestsDisplayedColumns = ['username', 'role', 'accept', 'deny'];
+  requestsDataSource = new MatTableDataSource();
+
   constructor(private _dataGetterService: DataGetterService, public dialog: MatDialog) {
-    this._dataGetterService.getRoles().subscribe((res: string[]) => {
+    this._dataGetterService.getRoles(false).subscribe((res: string[]) => {
       this.displayedColumns.push(...res);
       this.displayedColumns.push('action');
       this.roluri = res;
@@ -33,7 +35,8 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
   }
 
   ngAfterViewInit() {
-    this.loadData();
+    this.loadDataUsers();
+    this.loadRequests();
   }
 
   makeChanges(e) {
@@ -57,7 +60,7 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
     this._dataGetterService.updateRoles(this.infoArr).subscribe((res: any) => {
       console.log(this.infoArr);
       this.infoArr = [];
-      this.loadData();
+      this.loadDataUsers();
     }, (error) => {
       console.log(error);
     });
@@ -75,34 +78,65 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
 
   canDeactivate() {
     if (this.changesMade) {
-      return window.confirm('Discard changes?');
+
+      // const dialogRef = this.dialog.open(ConfirmDialog, {
+      //   width: '300px',
+      //   data: { title: 'Discard changes ?', message: 'Do you want to discard the changes ?' }
+      // });
+
+      // dialogRef.afterClosed().subscribe(result => {
+
+      //   return true;
+      // });
+
+      return window.confirm('Renunti la schimbari ?');
     }
     return true;
+    // return false;
   }
 
   delete(user) {
 
-    let dialogRef = this.dialog.open(ConfirmDialog, {
+    const dialogRef = this.dialog.open(ConfirmDialog, {
       width: '300px',
-      data: { message: 'adasdasdasd' }
+      data: { message: 'Esti sigur ca vrei sa-l stergi pe ' + user.username + ' ?', title: 'Stergere ?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      // this._dataGetterService.deleteUser(user).subscribe((res: any) => {
-      //   this.loadData();
-      // }, (error) => {
-      //   console.log(error);
-      // });
+      this._dataGetterService.deleteUser(user).subscribe((res: any) => {
+        this.loadDataUsers();
+      }, (error) => {
+        console.log(error);
+      });
     });
-
-    console.log(user);
-
   }
 
-  loadData() {
+  loadDataUsers() {
     this._dataGetterService.getUsers().subscribe((res: any[]) => {
       this.dataSource.data = res;
+    });
+  }
+
+  loadRequests() {
+    this._dataGetterService.getRequests().subscribe((res: any[]) => {
+      this.requestsDataSource.data = res;
+    });
+  }
+
+  isAdmin(user) {
+    if (sessionStorage.getItem('username') == user.username) {
+      return true;
+    }
+    return false;
+  }
+
+  manageRequest(request, accepted) {
+    this._dataGetterService.manageRequest(request, accepted).subscribe((res: any) => {
+      console.log(res);
+      this.loadRequests();
+      this.loadDataUsers();
+    }, (error) => {
+      console.log(error);
     });
   }
 }

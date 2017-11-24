@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   user = new FormControl('', Validators.required);
   pass = new FormControl('', Validators.required);
+  checkingCredentials: boolean;
 
   constructor(private _authService: AuthService,
     private _jwtHelperService: JwtHelperService,
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/home';
     this.usernameOrPasswordWrong = false;
+    this.checkingCredentials = false;
   }
 
   getErrorMessage(field) {
@@ -35,13 +37,18 @@ export class LoginComponent implements OnInit {
 
   login() {
 
+    this.checkingCredentials = true;
+    console.log(this.checkingCredentials);
+
     this._authService.login(this.username, this.password).subscribe(
       (loggedIn: any) => {
         console.log(loggedIn);
+        this.checkingCredentials = false;
         this._router.navigateByUrl(this.returnUrl);
       },
       (error) => {
         this.usernameOrPasswordWrong = true;
+        this.checkingCredentials = false;
         console.log(error);
       });
   }
