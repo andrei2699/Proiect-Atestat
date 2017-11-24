@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="upper-margin">
+  <mat-card>
+    <mat-card-title>
+      Cere Roluri
+    </mat-card-title>
+    <mat-card-content>
+      <p>
+        <b>
+          Roluri curente
+        </b> : {{myRoles}}
+      </p>
+      <p *ngIf="!showSelect">
+        Ai toate rolurile.
+      </p>
+
+      <p *ngIf="requestPending">
+        Cerere in asteptare ...
+      </p>
+
+      <mat-form-field *ngIf="showSelect && !requestPending">
+        <mat-select placeholder="Rol cerut" [(value)]="selected">
+          <mat-option *ngFor="let r of allRoles" [value]="r.value">
+            {{ r.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="!selected" *ngIf="showSelect && !requestPending" mat-raised-button color="primary" (click)="requestRole(false)">Cere</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

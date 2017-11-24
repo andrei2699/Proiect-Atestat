@@ -1,25 +1,35 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TestComponent } from './test/test.component';
-import { AuthGuard } from './auth/auth-guard';
-import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './Manage Users/auth/auth-guard';
+import { LoginComponent } from './Manage Users/login/login.component';
 import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { RegisterComponent } from './register/register.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import { RegisterComponent } from './Manage Users/register/register.component';
+import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
+import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 
 const routes: Routes = [
   {
     path: '', component: HomepageComponent,
+    pathMatch: 'full',
     canActivate: [AuthGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'denied', component: DeniedComponent },
   {
+    path: 'request-role',
+    component: RequestRoleComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['profesor', 'elev']
+    }
+  },
+  {
     path: 'home',
     component: HomepageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin-page',

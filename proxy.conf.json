@@ -1,5 +1,5 @@
 {
     "/api": {
-        "target": "http://localhost:82/"
+        "target": "http://info.tm.edu.ro:8080/~timarandrei/public/Proiect%20Atestat/"
     }
 }

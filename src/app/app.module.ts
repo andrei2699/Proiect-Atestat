@@ -4,22 +4,26 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './auth/auth.service';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { AuthService } from './Manage Users/auth/auth.service';
+import { LoginComponent } from './Manage Users/login/login.component';
+import { RegisterComponent } from './Manage Users/register/register.component';
 import { TestComponent } from './test/test.component';
-import { AuthGuard } from './auth/auth-guard';
+import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
-  MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule
+  MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import { DataGetterService } from './data-getter.service';
+import { DataGetterService } from './Manage Users/data-getter.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
+import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +34,12 @@ import { DataGetterService } from './data-getter.service';
     DeniedComponent,
     HomepageComponent,
     AdminPageComponent,
+    ConfirmDialog,
+    RequestRoleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -47,6 +52,7 @@ import { DataGetterService } from './data-getter.service';
       }
     }),
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -58,7 +64,14 @@ import { DataGetterService } from './data-getter.service';
     CdkTableModule,
     MatTableModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatTabsModule,
+    AppRoutingModule
+  ],
+  entryComponents: [
+    ConfirmDialog
   ],
   providers: [AuthService, AuthGuard, DataGetterService],
   bootstrap: [AppComponent]
