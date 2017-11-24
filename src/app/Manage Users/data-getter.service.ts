@@ -10,6 +10,7 @@ export class DataGetterService {
   manageUsersUrl = 'api/manageUsers.php';
   requestRoleUrl = 'api/requestRole.php';
   manageRequestedRolesUrl = 'api/manageRequestedRoles.php';
+  editUserInfoUrl = 'api/editUserInfo.php';
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,10 @@ export class DataGetterService {
 
   getUsers() {
     return this.http.get(this.manageUsersUrl);
+  }
+
+  changePassword(userId, newPass) {
+    return this.http.post(this.editUserInfoUrl, { action: 'changePass', userid: userId, pass: newPass });
   }
 
   updateRoles(usersAndRoles) {
