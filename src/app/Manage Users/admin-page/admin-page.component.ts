@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation, Inject, HostListener } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { DataGetterService } from '../data-getter.service';
 import { User } from '../user';
@@ -23,6 +23,8 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
   displayedColumns = ['username'];
   infoArr: InfoClass[] = [];
 
+  onlySaveIcon: boolean;
+
   requestsDisplayedColumns = ['username', 'role', 'accept', 'deny'];
   requestsDataSource = new MatTableDataSource();
 
@@ -37,6 +39,16 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
   ngAfterViewInit() {
     this.loadDataUsers();
     this.loadRequests();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth < 365) {
+      this.onlySaveIcon = false;
+
+    } else {
+      this.onlySaveIcon = true;
+    }
   }
 
   makeChanges(e) {

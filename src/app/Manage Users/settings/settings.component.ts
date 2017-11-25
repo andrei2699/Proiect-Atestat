@@ -12,9 +12,9 @@ export class SettingsComponent {
 
   confirmPassword: string;
   password: string;
-  @ViewChild('changePassButton') passButton: ElementRef;
-  @ViewChild('f') form: ElementRef;
-  @ViewChild('expPanel') expPanel: ElementRef;
+  @ViewChild('changePassButton') passButton;
+  @ViewChild('f') form;
+  @ViewChild('expPanel') expPanel;
 
   constructor(private _dataGetterService: DataGetterService,
     private _jwtHelperService: JwtHelperService,

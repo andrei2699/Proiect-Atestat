@@ -4,7 +4,7 @@
     <span class="example-spacer"></span>
     <button mat-button [disabled]="!changesMade" (click)="saveChanges()">
       <mat-icon>save</mat-icon>
-      <span>Salveaza schimbari</span>
+      <span *ngIf="onlySaveIcon">Salveaza</span>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>

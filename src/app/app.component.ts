@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import { AuthService } from './Manage Users/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';

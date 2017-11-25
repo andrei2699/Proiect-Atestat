@@ -2,19 +2,23 @@
   <mat-toolbar-row>
     <button mat-button (click)="goToLink('home')">Acasa</button>
     <button *ngIf="isRole('admin')" mat-button (click)="goToLink('admin-page')">Pagina Admin</button>
-    <button *ngIf="isRole('profesor')" mat-button>Creare Test</button>
-    <span class="example-spacer"></span>
+    <button fxHide.xs="true" *ngIf="isRole('profesor')" mat-button>Creare Test</button>
+    <span fxFlex></span>
     <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="goToLink('login')">Autentificare</button>
     <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="goToLink('register')">Inregistrare</button>
 
-    <span *ngIf="(_authService.isLoggedIn|async)">Bine ai revenit, {{_authService.name|async}} !</span>
-
+    <span fxHide.xs="true" *ngIf="(_authService.isLoggedIn|async)">Bine ai revenit, {{_authService.name|async}} !</span>
 
     <button *ngIf="(_authService.isLoggedIn|async)" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
 
     <mat-menu #menu="matMenu">
+      <button fxHide.gt-xs="true" *ngIf="isRole('profesor')" mat-menu-item>
+        <mat-icon>create</mat-icon>
+        <span>Creare Test</span>
+      </button>
+
       <button mat-menu-item (click)="goToLink('settings')">
         <mat-icon>build</mat-icon>
         <span>Setari</span>
