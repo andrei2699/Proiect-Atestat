@@ -25,6 +25,16 @@
         </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="swap">
+        <mat-header-cell *matHeaderCellDef> SCHIMBA PAROLA </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+
+          <button [disabled]="isAdmin(user)" mat-icon-button (click)="swap(user)">
+            <mat-icon>swap_vert</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> STERGERE </mat-header-cell>
         <mat-cell *matCellDef="let user">
