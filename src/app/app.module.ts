@@ -11,7 +11,8 @@ import { TestComponent } from './test/test.component';
 import { AuthGuard } from './auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
-  MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule
+  MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule,MatListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -20,9 +21,15 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './data-getter.service';
-import { SubjectComponent } from './subject/subject.component';
+import { DataService } from './data.service';
+import { TestsService } from './tests.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 import { InformaticaComponent } from './informatica/informatica.component';
+import { QuestionComponent } from './question/question.component';
+import { ElevresultComponent } from './elevresult/elevresult.component';
+import { SubjectComponent } from './subject/subject.component';
+import { MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -33,14 +40,16 @@ import { InformaticaComponent } from './informatica/informatica.component';
     DeniedComponent,
     HomepageComponent,
     AdminPageComponent,
-    SubjectComponent,
+    ConfirmDialog,
+    QuestionComponent,
     InformaticaComponent,
+    ElevresultComponent,
+    SubjectComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
-    FlexLayoutModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -53,6 +62,7 @@ import { InformaticaComponent } from './informatica/informatica.component';
       }
     }),
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -64,9 +74,18 @@ import { InformaticaComponent } from './informatica/informatica.component';
     CdkTableModule,
     MatTableModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatTabsModule,
+    AppRoutingModule,
+    MatRadioModule,
+    MatListModule
   ],
-  providers: [AuthService, AuthGuard, DataGetterService],
+  entryComponents: [
+    ConfirmDialog
+  ],
+  providers: [AuthService, AuthGuard, DataGetterService,DataService,TestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

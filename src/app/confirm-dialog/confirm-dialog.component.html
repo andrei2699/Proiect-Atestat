@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>{{data.message}}</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button color="accent" [mat-dialog-close]="true" *ngIf="data.confirmText">{{data.confirmText}}</button>
+  <button mat-raised-button mat-dialog-close [mat-dialog-close]="false" *ngIf="data.cancelText">{{data.cancelText}}</button>
+</mat-dialog-actions>

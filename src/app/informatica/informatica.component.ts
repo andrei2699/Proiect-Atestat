@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TestsService } from '../tests.service';
+import { test } from '../test';
 
 @Component({
   selector: 'app-informatica',
@@ -8,9 +11,16 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class InformaticaComponent implements OnInit {
 
-  constructor() { }
+  tests: test[];
 
-  ngOnInit() {
+  constructor(private testsService: TestsService) { }
+  
+  getTests(): void {
+    this.testsService.getTests()
+        .subscribe(tests => this.tests = tests);
   }
 
+  ngOnInit(){
+    this.getTests();
+  };
 }

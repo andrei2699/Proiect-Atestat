@@ -8,7 +8,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { InformaticaComponent } from './informatica/informatica.component';
-
+import { ElevresultComponent } from './elevresult/elevresult.component';
+import { QuestionComponent } from './question/question.component';
 
 const routes: Routes = [
   {
@@ -17,8 +18,10 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'informatica',component: InformaticaComponent},
+  { path: 'Informatica',component: InformaticaComponent},
+  { path: 'result',component: ElevresultComponent},
   { path: 'denied', component: DeniedComponent },
+  { path: 'questions', component: QuestionComponent },
   {
     path: 'home',
     component: HomepageComponent,

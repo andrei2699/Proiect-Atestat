@@ -1,0 +1,18 @@
+.example-card2 {
+    text-align:center;
+    width :95%;
+    align-self: center;
+    
+  }
+  
+  .example-card2:hover{
+      color : white;
+      background:#3f51b5;
+  }
+  .button{
+      display: none;
+      color:black;
+      width: 10%; 
+  }
+ 
+  
