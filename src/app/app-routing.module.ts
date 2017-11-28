@@ -11,6 +11,7 @@ import { QuestionComponent } from './question/question.component';
 import { RegisterComponent } from './Manage Users/register/register.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
+import { SettingsComponent } from './Manage Users/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomepageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard]
   },
   {

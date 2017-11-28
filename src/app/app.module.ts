@@ -12,7 +12,7 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
   MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
-  MatProgressSpinnerModule, MatSelectModule, MatTabsModule,MatListModule
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -34,6 +34,7 @@ import { DataGetterService } from './Manage Users/data-getter.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
+import { SettingsComponent } from './Manage Users/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -45,11 +46,11 @@ import { RequestRoleComponent } from './Manage Users/request-role/request-role.c
     HomepageComponent,
     AdminPageComponent,
     ConfirmDialog,
+    SettingsComponent
     QuestionComponent,
     InformaticaComponent,
     ElevresultComponent,
-    SubjectComponent,
-    
+    SubjectComponent,  
     RequestRoleComponent
   ],
   imports: [
@@ -83,6 +84,7 @@ import { RequestRoleComponent } from './Manage Users/request-role/request-role.c
     MatProgressSpinnerModule,
     MatSelectModule,
     MatTabsModule,
+    MatExpansionModule,
     AppRoutingModule,
     MatRadioModule,
     MatListModule

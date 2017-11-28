@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, ViewEncapsulation, Inject } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, AfterViewInit, ViewEncapsulation, Inject, HostListener } from '@angular/core';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { DataGetterService } from '../data-getter.service';
 import { User } from '../user';
 import { DataSource } from '@angular/cdk/collections';
@@ -23,12 +23,16 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
   displayedColumns = ['username'];
   infoArr: InfoClass[] = [];
 
+  onlySaveIcon: boolean;
+
   requestsDisplayedColumns = ['username', 'role', 'accept', 'deny'];
   requestsDataSource = new MatTableDataSource();
 
-  constructor(private _dataGetterService: DataGetterService, public dialog: MatDialog) {
+  constructor(private _dataGetterService: DataGetterService, public dialog: MatDialog,
+    public snackBar: MatSnackBar) {
     this._dataGetterService.getRoles(false).subscribe((res: string[]) => {
       this.displayedColumns.push(...res);
+      this.displayedColumns.push('swap');
       this.displayedColumns.push('action');
       this.roluri = res;
     });
@@ -37,6 +41,16 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
   ngAfterViewInit() {
     this.loadDataUsers();
     this.loadRequests();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth < 365) {
+      this.onlySaveIcon = false;
+
+    } else {
+      this.onlySaveIcon = true;
+    }
   }
 
   makeChanges(e) {
@@ -103,11 +117,34 @@ export class AdminPageComponent implements AfterViewInit, CanComponentDeactivate
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this._dataGetterService.deleteUser(user).subscribe((res: any) => {
-        this.loadDataUsers();
-      }, (error) => {
-        console.log(error);
-      });
+      if (result) {
+        this._dataGetterService.deleteUser(user).subscribe((res: any) => {
+          this.loadDataUsers();
+        }, (error) => {
+          console.log(error);
+        });
+      }
+    });
+  }
+
+  swap(user) {
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '300px',
+      data: { message: 'Parola lui ' + user.username + ' va fi schimbata in \'parola123\' ', title: 'Schimba parola' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const id = user.id;
+        const pass = 'parola123';
+        this._dataGetterService.changePassword(id, pass).subscribe((res: any) => {
+          this.snackBar.open('Parola schimbata !', '', {
+            duration: 2000,
+          });
+        }, (error) => {
+          console.log(error);
+        });
+      }
     });
   }
 
