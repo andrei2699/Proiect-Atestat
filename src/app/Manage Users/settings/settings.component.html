@@ -1,0 +1,39 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="upper-margin">
+  <mat-list>
+    <h3 mat-subheader>Informatii generale</h3>
+    <mat-accordion>
+      <mat-expansion-panel #expPanel (opened)="resetChangePassword()">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Schimbarea parolei
+          </mat-panel-title>
+          <mat-panel-description>
+            Schimba-ti parola
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form #f="ngForm">
+          <mat-form-field>
+            <input [(ngModel)]="password" matInput name="password" type="password" placeholder="Parola noua">
+          </mat-form-field>
+
+          <br/>
+
+          <mat-form-field>
+            <input [(ngModel)]="confirmPassword" #confirmPasswordEl="ngModel" name="confirmPassword" matInput type="password" placeholder="Confirmarea parolei">
+            <span matSuffix>
+              <mat-icon *ngIf="!confirmPasswordEl.pristine && !passwordsMatch()" color="warn">error</mat-icon>
+              <mat-icon *ngIf="!confirmPasswordEl.pristine  && passwordsMatch()" color="accent">done</mat-icon>
+            </span>
+          </mat-form-field>
+
+          <br/>
+
+          <button #changePassButton [disabled]="!f.form.valid || !passwordsMatch()" type="submit" mat-raised-button color="primary"
+            (click)="saveNewPassword()">Salveaza</button>
+        </form>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-list>
+</div>

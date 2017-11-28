@@ -4,7 +4,7 @@
     <span class="example-spacer"></span>
     <button mat-button [disabled]="!changesMade" (click)="saveChanges()">
       <mat-icon>save</mat-icon>
-      <span>Salveaza schimbari</span>
+      <span *ngIf="onlySaveIcon">Salveaza</span>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -22,6 +22,16 @@
         <mat-header-cell *matHeaderCellDef>{{colRole | uppercase}}</mat-header-cell>
         <mat-cell *matCellDef="let user">
           <mat-checkbox [checked]="user.roles.indexOf(colRole)>=0" [id]="user.id + '.' + colRole" (change)="makeChanges($event)">&nbsp;</mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="swap">
+        <mat-header-cell *matHeaderCellDef> SCHIMBA PAROLA </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+
+          <button [disabled]="isAdmin(user)" mat-icon-button (click)="swap(user)">
+            <mat-icon>swap_vert</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 
