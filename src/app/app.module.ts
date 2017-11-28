@@ -12,11 +12,7 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
   MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
-<<<<<<< HEAD
-  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule
-=======
   MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule
->>>>>>> 3e53b197b71f36c5f9a56c793398b0a3f07dfa99
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -47,16 +43,11 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
     HomepageComponent,
     AdminPageComponent,
     ConfirmDialog,
-    SettingsComponent
+    SettingsComponent,
     QuestionComponent,
     InformaticaComponent,
     ElevresultComponent,
-<<<<<<< HEAD
     SubjectComponent,
-
-=======
-    SubjectComponent,  
->>>>>>> 3e53b197b71f36c5f9a56c793398b0a3f07dfa99
     RequestRoleComponent
   ],
   imports: [
