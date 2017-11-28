@@ -20,16 +20,13 @@ import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import { DataGetterService } from './data-getter.service';
 import { DataService } from './data.service';
 import { TestsService } from './tests.service';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 import { InformaticaComponent } from './informatica/informatica.component';
 import { QuestionComponent } from './question/question.component';
 import { ElevresultComponent } from './elevresult/elevresult.component';
 import { SubjectComponent } from './subject/subject.component';
-import { MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { DataGetterService } from './Manage Users/data-getter.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
@@ -46,11 +43,11 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
     HomepageComponent,
     AdminPageComponent,
     ConfirmDialog,
-    SettingsComponent
+    SettingsComponent,
     QuestionComponent,
     InformaticaComponent,
     ElevresultComponent,
-    SubjectComponent,  
+    SubjectComponent,
     RequestRoleComponent
   ],
   imports: [
@@ -87,13 +84,13 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
     MatExpansionModule,
     AppRoutingModule,
     MatRadioModule,
-    MatListModule
+    MatListModule,
     AppRoutingModule
   ],
   entryComponents: [
     ConfirmDialog
   ],
-  providers: [AuthService, AuthGuard, DataGetterService,DataService,TestsService],
+  providers: [AuthService, AuthGuard, DataGetterService, DataService, TestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
