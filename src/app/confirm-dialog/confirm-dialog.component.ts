@@ -20,5 +20,4 @@ export class ConfirmDialog implements OnInit {
 
   ngOnInit() {
   }
-
 }
