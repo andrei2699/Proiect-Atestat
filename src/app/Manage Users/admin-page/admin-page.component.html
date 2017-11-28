@@ -1,0 +1,80 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Gestioneaza utilizatori</span>
+    <span class="example-spacer"></span>
+    <button mat-button [disabled]="!changesMade" (click)="saveChanges()">
+      <mat-icon>save</mat-icon>
+      <span>Salveaza schimbari</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-tab-group>
+  <mat-tab label="Gestioneaza Utilizatori">
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> Utilizator </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+      </ng-container>
+
+      <ng-container *ngFor="let colRole of roluri" matColumnDef="{{colRole}}">
+        <mat-header-cell *matHeaderCellDef>{{colRole | uppercase}}</mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <mat-checkbox [checked]="user.roles.indexOf(colRole)>=0" [id]="user.id + '.' + colRole" (change)="makeChanges($event)">&nbsp;</mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> STERGERE </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button [disabled]="isAdmin(user)" mat-icon-button (click)="delete(user)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-tab>
+
+  <mat-tab label="Gestioneaza Cereri">
+    <mat-table #table [dataSource]="requestsDataSource">
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> Utilizator </mat-header-cell>
+        <mat-cell *matCellDef="let request"> {{request.username}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef> Rol </mat-header-cell>
+        <mat-cell *matCellDef="let request"> {{request.tip}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="accept">
+        <mat-header-cell *matHeaderCellDef> Accepta </mat-header-cell>
+        <mat-cell *matCellDef="let request">
+          <button mat-icon-button color="primary" (click)="manageRequest(request, true)">
+            <mat-icon>done</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="deny">
+        <mat-header-cell *matHeaderCellDef> Refuza </mat-header-cell>
+        <mat-cell *matCellDef="let request">
+          <button mat-icon-button color="warn" (click)="manageRequest(request, false)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="requestsDisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: requestsDisplayedColumns;"></mat-row>
+    </mat-table>
+    <p>
+      {{requestsDataSource.lenght}}
+    </p>
+  </mat-tab>
+</mat-tab-group>
