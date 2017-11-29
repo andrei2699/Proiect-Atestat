@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DataService } from '../data.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-elevresult',
@@ -9,11 +11,19 @@ import { DataService } from '../data.service';
 })
 export class ElevresultComponent implements OnInit {
 
-  constructor (private _myService: DataService){
-    console.log(this._myService.getData());
+  constructor(private route: ActivatedRoute,
+    private router: Router) {
   }
 
+  test;
+  nota;
+
   ngOnInit() {
+    this.test = this.route.params.subscribe(params => {
+      this.nota = +params['id'];
+    });
+
+    console.log('asds');
   }
 
 }

@@ -12,7 +12,7 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
   MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
-  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -21,9 +21,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './Manage Users/data-getter.service';
-import { DataService } from './data.service';
 import { TestsService } from './tests.service';
-import { InformaticaComponent } from './informatica/informatica.component';
 import { QuestionComponent } from './question/question.component';
 import { ElevresultComponent } from './elevresult/elevresult.component';
 import { SubjectComponent } from './subject/subject.component';
@@ -45,7 +43,6 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
     ConfirmDialog,
     SettingsComponent,
     QuestionComponent,
-    InformaticaComponent,
     ElevresultComponent,
     SubjectComponent,
     RequestRoleComponent
@@ -85,12 +82,13 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
     AppRoutingModule,
     MatRadioModule,
     MatListModule,
+    MatGridListModule,
     AppRoutingModule
   ],
   entryComponents: [
     ConfirmDialog
   ],
-  providers: [AuthService, AuthGuard, DataGetterService, DataService, TestsService],
+  providers: [AuthService, AuthGuard, DataGetterService, TestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

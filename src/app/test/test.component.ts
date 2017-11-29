@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DataService } from '../data.service';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { TestsService } from '../tests.service';
 import { test } from '../test';
@@ -13,19 +12,18 @@ import { Injectable, Pipe, PipeTransform } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private router: Router, private _myService: DataService, private testsService: TestsService) {
-    console.log(this._myService.getData());
+  constructor(private router: Router, private testsService: TestsService) {
   }
 
-  tests: test[];
+  tests;
 
-  getTests(): void {
-    this.testsService.getTests()
+  getTests(materie): void {
+    this.testsService.getTests(materie)
       .subscribe(tests => this.tests = tests);
   }
 
   ngOnInit() {
-    this.getTests();
+    this.getTests('sss');
   }
 
   show(a: string) {
@@ -42,6 +40,6 @@ export class TestComponent implements OnInit {
   }
 
   GoTo(a: string) {
-    this.router.navigateByUrl('questions');
+    this.router.navigateByUrl('/questions');
   }
 }

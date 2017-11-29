@@ -1,4 +1,7 @@
-<h1>
-  <app-subject></app-subject>
-  Bine ai venit acasa !
-</h1>
+<div class="upper-margin">
+    <mat-grid-list cols="3" rowHeight="150px">
+    <mat-grid-tile *ngFor="let subject of subjects" >
+      <app-subject [subject]="subject"></app-subject>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

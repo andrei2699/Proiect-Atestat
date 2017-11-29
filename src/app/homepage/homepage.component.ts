@@ -8,6 +8,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
+  subjects = ['Informatica', 'Geografie', 'Matematica', 'Biologie', 'Chimie', 'Fizica', 'Engleza', 'Franceza', 'Romana', 'Istorie'];
+
   constructor() { }
 
   ngOnInit() {

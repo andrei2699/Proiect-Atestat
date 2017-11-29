@@ -5,7 +5,6 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import { LoginComponent } from './Manage Users/login/login.component';
 import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { InformaticaComponent } from './informatica/informatica.component';
 import { ElevresultComponent } from './elevresult/elevresult.component';
 import { QuestionComponent } from './question/question.component';
 import { RegisterComponent } from './Manage Users/register/register.component';
@@ -21,8 +20,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'Informatica',component: InformaticaComponent},
-  { path: 'result',component: ElevresultComponent},
+  { path: 'result/:id',component: ElevresultComponent},
   { path: 'denied', component: DeniedComponent },
   { path: 'questions', component: QuestionComponent },
   {

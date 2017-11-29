@@ -14,8 +14,8 @@ export class TestsService {
 
   private testsUrl = 'api/getTests.php';
 
-  getTests(): Observable<test[]> {
-    return this.http.get<test[]>(this.testsUrl);
+  getTests(materie) {
+    return this.http.post(this.testsUrl, {materie: materie});
   }
 }
 

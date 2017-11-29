@@ -1,6 +1,7 @@
 .example-card1 {
     text-align:center;
     align-self: center;
+    width: 300px;
   }
   
   .example-card1:hover{
