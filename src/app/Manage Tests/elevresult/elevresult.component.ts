@@ -22,8 +22,6 @@ export class ElevresultComponent implements OnInit {
     this.test = this.route.params.subscribe(params => {
       this.nota = +params['id'];
     });
-
-    console.log('asds');
   }
 
 }

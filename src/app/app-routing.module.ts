@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TestComponent } from './test/test.component';
+import { TestComponent } from './Manage Tests/test/test.component';
 import { AuthGuard } from './Manage Users/auth/auth-guard';
 import { LoginComponent } from './Manage Users/login/login.component';
 import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ElevresultComponent } from './elevresult/elevresult.component';
-import { QuestionComponent } from './question/question.component';
+import { ElevresultComponent } from './Manage Tests/elevresult/elevresult.component';
+import { QuestionComponent } from './Manage Tests/question/question.component';
 import { RegisterComponent } from './Manage Users/register/register.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
@@ -20,9 +20,31 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'result/:id',component: ElevresultComponent},
   { path: 'denied', component: DeniedComponent },
-  { path: 'questions', component: QuestionComponent },
+  {
+    path: 'questions/:test',
+    component: QuestionComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['elev']
+    }
+  },
+  {
+    path: 'result/:id',
+    component: ElevresultComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['elev']
+    }
+  },
+  {
+    path: 'test/:materie',
+    component: TestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['elev']
+    }
+  },
   {
     path: 'request-role',
     component: RequestRoleComponent,
@@ -50,14 +72,6 @@ const routes: Routes = [
       roles: ['admin']
     }
   },
-  {
-    path: 'test',
-    component: TestComponent,
-    canActivate: [AuthGuard],
-    data: {
-      roles: ['admin', 'elev']
-    }
-  }
 ];
 
 @NgModule({

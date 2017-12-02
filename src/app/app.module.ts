@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './Manage Users/auth/auth.service';
 import { LoginComponent } from './Manage Users/login/login.component';
 import { RegisterComponent } from './Manage Users/register/register.component';
-import { TestComponent } from './test/test.component';
+import { TestComponent } from './Manage Tests/test/test.component';
 import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
@@ -21,15 +21,15 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './Manage Users/data-getter.service';
-import { TestsService } from './tests.service';
-import { QuestionComponent } from './question/question.component';
-import { ElevresultComponent } from './elevresult/elevresult.component';
-import { SubjectComponent } from './subject/subject.component';
+import { TestsService } from './Manage Tests/tests.service';
+import { QuestionComponent } from './Manage Tests/question/question.component';
+import { ElevresultComponent } from './Manage Tests/elevresult/elevresult.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 import { SettingsComponent } from './Manage Users/settings/settings.component';
+import { SubjectLineComponent } from './Manage Tests/subject-line/subject-line.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +44,8 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
     SettingsComponent,
     QuestionComponent,
     ElevresultComponent,
-    SubjectComponent,
-    RequestRoleComponent
+    RequestRoleComponent,
+    SubjectLineComponent,
   ],
   imports: [
     BrowserModule,

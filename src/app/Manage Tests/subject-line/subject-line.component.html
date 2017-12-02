@@ -1,0 +1,11 @@
+<mat-card class="example-card2" [ngStyle]="{'width':width + 'px'}" (mouseenter)="show()" (mouseleave)="hide()">
+  <mat-card-content>
+    <h1>
+      {{title}}
+    </h1>
+  </mat-card-content>
+  <mat-card-actions [ngStyle]="{'display': display?'initial':'none'}">
+    <button #firstButton mat-raised-button color="accent" (click)="GoTo()">{{firstButtonText}}</button>
+    <button #secondButton mat-raised-button color="warn">{{secondButtonText}}</button>
+  </mat-card-actions>
+</mat-card>
