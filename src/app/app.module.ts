@@ -30,6 +30,8 @@ import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { SubjectLineComponent } from './Manage Tests/subject-line/subject-line.component';
+import { ElevHomeComponent } from './elev-home/elev-home.component';
+import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { SubjectLineComponent } from './Manage Tests/subject-line/subject-line.c
     ElevresultComponent,
     RequestRoleComponent,
     SubjectLineComponent,
+    ElevHomeComponent,
+    CreateTestComponent,
   ],
   imports: [
     BrowserModule,

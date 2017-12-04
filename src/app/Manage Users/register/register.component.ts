@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorMessage(field) {
-    return field.hasError('required') ? 'You must enter a value' : '';
+    return field.hasError('required') ? 'Trebuie sa introduci o valoare' : '';
   }
 
   passwordsMatch() {

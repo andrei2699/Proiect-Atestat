@@ -32,14 +32,12 @@ export class LoginComponent implements OnInit {
   }
 
   getErrorMessage(field) {
-    return field.hasError('required') ? 'You must enter a value' : '';
+    return field.hasError('required') ? 'Trebuie sa introduci o valoare' : '';
   }
 
   login() {
 
     this.checkingCredentials = true;
-    console.log(this.checkingCredentials);
-
     this._authService.login(this.username, this.password).subscribe(
       (loggedIn: any) => {
         console.log(loggedIn);

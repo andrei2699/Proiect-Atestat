@@ -1,10 +1,2 @@
-<div class="upper-margin" fxLayout="column">
-  <mat-grid-list cols="3" rowHeight="150px">
-    <mat-grid-tile *ngFor="let subject of subjects">
-      <!-- <div *ngFor="let subject of subjects"> -->
-      <app-subject-line [width]="300" [link]="'test'" [params]="subject" [title]="subject" [firstButtonText]="'Teste'" [secondButtonText]="'Note'">
-      </app-subject-line>
-      <!-- </div> -->
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+<app-elev-home *ngIf="isRole('admin')">
+</app-elev-home>
