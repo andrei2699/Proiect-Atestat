@@ -17,12 +17,6 @@ export class SettingsComponent implements OnInit {
   @ViewChild('f') form;
   @ViewChild('changePassPanel') changePassPanel;
 
-  states = [
-    'Alabama', 'Alaska', 'Arizona',
-  ];
-
-  materii = [];
-
   constructor(private _dataGetterService: DataGetterService,
     private _jwtHelperService: JwtHelperService,
     public snackBar: MatSnackBar,

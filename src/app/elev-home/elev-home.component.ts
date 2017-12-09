@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MATERII } from '../Manage Tests/fake-questions';
 
 @Component({
   selector: 'app-elev-home',
@@ -7,7 +8,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class ElevHomeComponent implements OnInit {
-  subjects = ['Informatica', 'Geografie', 'Matematica', 'Biologie', 'Chimie', 'Fizica', 'Engleza', 'Franceza', 'Romana', 'Istorie'];
+
+  subjects = MATERII;
   constructor() { }
 
   ngOnInit() {

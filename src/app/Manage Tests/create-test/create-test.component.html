@@ -1,39 +1,87 @@
-<mat-card>
+<mat-card class="mat-elevation-z4">
   <mat-card-header>
-    <form>
-      <mat-form-field>
+    <form fxFlex>
+      <mat-form-field fxFlex>
         <input matInput placeholder="Denumirea testului" name="testName" [(ngModel)]="testName">
       </mat-form-field>
 
+      <div fxFlex></div>
+
       <mat-form-field>
-        <input matInput (ngModelChange)="sizeChanged($event)" type="number" min="0" step="1" placeholder="Numar de intrebari" name="NumOfQuestions"
-          [(ngModel)]="numarIntrebari">
+        <mat-select placeholder="Disciplina" [(ngModel)]="materieSelectata" name="disciplina">
+          <mat-option *ngFor="let mat of materii" [value]="mat">
+            {{mat}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </form>
+    <div fxFlex></div>
+    <button mat-fab color="accent" (click)="addQuestion()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-header>
+</mat-card>
+
+<br/>
+
+<mat-accordion class="example-headers-align" fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutWrap>
+  <mat-expansion-panel *ngFor="let q of questions;let i = index" class="question mat-elevation-z4" [expanded]="steps(i)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Intrebarea {{i+1}}.</h3>
+      </mat-panel-title>
+
+      <mat-panel-description>
+        <h4>
+          {{q.points}} &nbsp;
+          <span *ngIf="q.points > 1">Puncte</span>
+          <span *ngIf="q.points == 1">Punct</span>
+        </h4>
+        <!-- <mat-icon color="warn" *ngIf="!q.finished">close</mat-icon>
+        <mat-icon color="primary" *ngIf="q.finished">done</mat-icon> -->
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-create-question-test [(question)]="questions[i]"></app-create-question-test>
+    <mat-action-row>
+      <button mat-button (click)="deleteQuestion(i)">
+        <mat-icon>delete</mat-icon>
+        Sterge
+      </button>
+      <div fxFlex></div>
+    </mat-action-row>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<br/>
+
+<mat-card class="mat-elevation-z4">
+  <mat-card-header>
+    <mat-card-title>
+      Informatii despre test
+    </mat-card-title>
+    <mat-card-subtitle>
+      Nume: {{testName}}
+      <span *ngIf="!testName">Neselectat</span>
+      <br/> Disciplina: {{materieSelectata}}
+      <span *ngIf="!materieSelectata">Neselectata</span>
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    Numar intrebari: {{questions.length}}
+    <br/> Total puncte : {{totalPuncte()}} / 10
+    <br/> Intrebari finalizate {{finishedQuestions()}} / {{questions.length}}
 
-    <mat-accordion fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutWrap>
-
-      <mat-expansion-panel *ngFor="let e of questions" class="question mat-elevation-z4">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>Intrebarea {{e.index}}.</h3>
-            <span fxFlex>
-            </span>
-            <div>
-              <h4>
-                {{e.points}} &nbsp;
-                <span *ngIf="e.points > 1">Puncte</span>
-                <span *ngIf="e.points == 1">Punct</span>
-              </h4>
-            </div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <app-create-question-test [(ngModel)]="e.points"></app-create-question-test>
-
-      </mat-expansion-panel>
-    </mat-accordion>
   </mat-card-content>
+
+  <mat-card-actions>
+    <div fxFlex></div>
+
+    <button [disabled]="isNotTestValid()" mat-raised-button color="primary" (click)="saveTest()">
+      <mat-icon>save</mat-icon>
+      Salveaza
+    </button>
+  </mat-card-actions>
 </mat-card>

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TestsService } from '../tests.service';
-import { test } from '../test';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,7 +22,6 @@ export class TestComponent implements OnInit {
       this.getTests(materie);
     });
   }
-
 
   getTests(materie) {
     console.log(materie);
