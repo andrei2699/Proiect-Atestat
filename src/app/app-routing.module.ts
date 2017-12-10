@@ -4,7 +4,7 @@ import { TestComponent } from './Manage Tests/test/test.component';
 import { AuthGuard } from './Manage Users/auth/auth-guard';
 import { LoginComponent } from './Manage Users/login/login.component';
 import { DeniedComponent } from './denied/denied.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './Homepages/homepage/homepage.component';
 import { ElevresultComponent } from './Manage Tests/elevresult/elevresult.component';
 import { QuestionComponent } from './Manage Tests/question/question.component';
 import { RegisterComponent } from './Manage Users/register/register.component';
@@ -56,6 +56,15 @@ const routes: Routes = [
   },
   {
     path: 'create-test',
+    component: CreateTestComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard],
+    data: {
+      roles: ['profesor']
+    }
+  },
+  {
+    path: 'create-test/:nume/:materie',
     component: CreateTestComponent,
     canActivate: [AuthGuard],
     canDeactivate: [AuthGuard],

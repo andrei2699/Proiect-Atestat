@@ -5,7 +5,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { MATERII } from '../fake-questions';
 import { Test } from '../test-class';
 import { TestsService } from '../tests.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CanComponentDeactivate } from '../../Manage Users/auth/auth-guard';
 
 @Component({
@@ -20,19 +20,30 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
   materieSelectata: string;
   materii = MATERII;
   questions = [];
+  goHome: boolean;
   @ViewChild('accordion') accordion;
 
   constructor(public dialog: MatDialog,
     private _testsService: TestsService,
     private router: Router,
+    private route: ActivatedRoute,
     public snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.goHome = false;
     this.addQuestion();
-    this.clicked = false;
+    this.route.params.subscribe(params => {
+      const nume = params['nume'];
+      const materie = params['materie'];
+      this.testName = nume;
+      this.materieSelectata = materie;
+    });
   }
 
   canDeactivate() {
+    if (this.goHome) {
+      return true;
+    }
     return window.confirm('Esti sigur ca vrei sa parasesti pagina ?');
   }
 
@@ -113,6 +124,7 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
         this._testsService.setTest(test).subscribe(res => {
           console.log(res);
           this.router.navigate(['/home']);
+          this.goHome = true;
         }, (error) => {
           console.log(error);
         });
@@ -121,6 +133,7 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
   }
 
   isNotTestValid() {
+
     return !this.materieSelectata || !this.testName
       || this.totalPuncte() != 10;
   }

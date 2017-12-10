@@ -17,7 +17,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { DeniedComponent } from './denied/denied.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './Homepages/homepage/homepage.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './Manage Users/data-getter.service';
@@ -30,8 +30,10 @@ import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { SubjectLineComponent } from './Manage Tests/subject-line/subject-line.component';
-import { ElevHomeComponent } from './elev-home/elev-home.component';
+import { ElevHomeComponent } from './Homepages/elev-home/elev-home.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
+import { ProfHomeComponent } from './Homepages/prof-home/prof-home.component';
+import { AdminHomeComponent } from './Homepages/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { CreateTestComponent } from './Manage Tests/create-test/create-test.comp
     SubjectLineComponent,
     ElevHomeComponent,
     CreateTestComponent,
+    ProfHomeComponent,
+    AdminHomeComponent,
   ],
   imports: [
     BrowserModule,
