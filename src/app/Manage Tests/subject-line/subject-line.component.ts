@@ -22,8 +22,6 @@ export class SubjectLineComponent implements OnInit {
   @Input()
   secondButtonText: string;
   @Input()
-  width;
-  @Input()
   params;
 
   ngOnInit() {

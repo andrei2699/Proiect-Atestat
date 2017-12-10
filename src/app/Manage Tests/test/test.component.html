@@ -1,15 +1,10 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <mat-list>
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center stretch">
+  <div *ngIf="tests && tests.length == 0" class="upper-margin">
+    <h1>Fara teste ... </h1>
+  </div>
 
-    <mat-list-item *ngIf="tests && tests.length == 0">
-      <h1>Fara teste ... </h1>
-    </mat-list-item>
+  <app-subject-line *ngFor="let test of tests" class="upper-margin" [link]="'questions'" [params]="test.title" [title]="test.title"
+    [firstButtonText]="'Start Test'" [secondButtonText]="'Nota'">
+  </app-subject-line>
 
-    <mat-list-item *ngFor="let test of tests" style="margin:100px">
-      <app-subject-line [width]="400" [link]="'questions'" [params]="test.title" [title]="test.title" [firstButtonText]="'Start Test'"
-        [secondButtonText]="'Nota'">
-      </app-subject-line>
-    </mat-list-item>
-
-  </mat-list>
 </div>

@@ -26,7 +26,7 @@ export class SettingsComponent implements OnInit {
   }
 
   passwordsMatch() {
-    return this.password === this.confirmPassword;
+    return this.password && this.password === this.confirmPassword;
   }
 
   resetChangePassword() {
