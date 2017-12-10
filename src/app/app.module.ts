@@ -32,7 +32,6 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { SubjectLineComponent } from './Manage Tests/subject-line/subject-line.component';
 import { ElevHomeComponent } from './elev-home/elev-home.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
-import { CreateQuestionTestComponent } from './Manage Tests/create-question-test/create-question-test.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,6 @@ import { CreateQuestionTestComponent } from './Manage Tests/create-question-test
     SubjectLineComponent,
     ElevHomeComponent,
     CreateTestComponent,
-    CreateQuestionTestComponent,
   ],
   imports: [
     BrowserModule,

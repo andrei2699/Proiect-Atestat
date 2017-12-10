@@ -24,7 +24,7 @@
 
 <br/>
 
-<mat-accordion class="example-headers-align" fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutWrap>
+<mat-accordion #accordion class="example-headers-align" fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutWrap>
   <mat-expansion-panel *ngFor="let q of questions;let i = index" class="question mat-elevation-z4" [expanded]="steps(i)">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -37,13 +37,37 @@
           <span *ngIf="q.points > 1">Puncte</span>
           <span *ngIf="q.points == 1">Punct</span>
         </h4>
-        <!-- <mat-icon color="warn" *ngIf="!q.finished">close</mat-icon>
-        <mat-icon color="primary" *ngIf="q.finished">done</mat-icon> -->
+        <mat-icon color="warn" *ngIf="!f.form.valid">close</mat-icon>
+        <mat-icon color="primary" *ngIf="f.form.valid">done</mat-icon>
 
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <app-create-question-test [(question)]="questions[i]"></app-create-question-test>
+    <form #f="ngForm">
+      <div>
+        <mat-form-field fxFlex>
+          <textarea required matInput placeholder="Textul intrebarii" name="questionName" [(ngModel)]="q.text"></textarea>
+        </mat-form-field>
+        <span fxFlex="10"></span>
+        <div>
+          <mat-form-field fxFlex>
+            <input matInput type="number" min="1" max="10" step="1" placeholder="Puncte" name="points" [(ngModel)]="q.points">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-radio-group required name="correctAnswer+{{i}}" [(ngModel)]="q.correct">
+        <div *ngFor="let k of [0,1,2,3,4];let nr = index">
+          <div>
+            <mat-radio-button value="{{nr}}" class="radio-button"></mat-radio-button>
+            <mat-form-field fxFlex="60">
+              <input required matInput placeholder="Varianta de raspuns {{nr+1}}" name="input-{{nr}}" [(ngModel)]="q.answers[nr]">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-radio-group>
+    </form>
+
     <mat-action-row>
       <button mat-button (click)="deleteQuestion(i)">
         <mat-icon>delete</mat-icon>
@@ -72,8 +96,6 @@
   <mat-card-content>
     Numar intrebari: {{questions.length}}
     <br/> Total puncte : {{totalPuncte()}} / 10
-    <br/> Intrebari finalizate {{finishedQuestions()}} / {{questions.length}}
-
   </mat-card-content>
 
   <mat-card-actions>

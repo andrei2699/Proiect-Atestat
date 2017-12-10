@@ -58,6 +58,7 @@ const routes: Routes = [
     path: 'create-test',
     component: CreateTestComponent,
     canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard],
     data: {
       roles: ['profesor']
     }

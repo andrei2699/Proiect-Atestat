@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { Question } from '../question';
 import { ConfirmDialog } from '../../confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { MATERII } from '../fake-questions';
 import { Test } from '../test-class';
 import { TestsService } from '../tests.service';
+import { Router } from '@angular/router';
+import { CanComponentDeactivate } from '../../Manage Users/auth/auth-guard';
 
 @Component({
   selector: 'app-create-test',
@@ -12,23 +14,30 @@ import { TestsService } from '../tests.service';
   styleUrls: ['./create-test.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class CreateTestComponent implements OnInit {
+export class CreateTestComponent implements OnInit, CanComponentDeactivate {
 
   testName: string;
   materieSelectata: string;
   materii = MATERII;
-
   questions = [];
+  @ViewChild('accordion') accordion;
+
   constructor(public dialog: MatDialog,
-    private _testsService: TestsService) { }
+    private _testsService: TestsService,
+    private router: Router,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.addQuestion();
+    this.clicked = false;
+  }
+
+  canDeactivate() {
+    return window.confirm('Esti sigur ca vrei sa parasesti pagina ?');
   }
 
   addQuestion() {
     const q = new Question();
-    q.finished = false;
     this.questions.push(q);
   }
 
@@ -58,16 +67,6 @@ export class CreateTestComponent implements OnInit {
     return t;
   }
 
-  getUnfinishedQuestions() {
-    const qs = [];
-    for (let i = 0; i < this.questions.length; i++) {
-      if (this.questions[i].finished) {
-        qs.push(i);
-      }
-    }
-    return qs;
-  }
-
   finishedQuestions() {
     let t = 0;
     for (let i = 0; i < this.questions.length; i++) {
@@ -79,6 +78,27 @@ export class CreateTestComponent implements OnInit {
   }
 
   saveTest() {
+
+    let allQuestionsValid = true;
+    const children = this.accordion.nativeElement.children;
+
+    for (let i = 0; i < children.length; i++) {
+      const form = children[i].querySelector('div').
+        querySelector('div').querySelector('form');
+      const invalid = form.className.indexOf('ng-invalid');
+      if (invalid != -1) {
+        allQuestionsValid = false;
+        break;
+      }
+    }
+
+    if (!allQuestionsValid) {
+      this.snackBar.open('Nu toate intrebarile sunt valide !', '', {
+        duration: 2000,
+      });
+      return;
+    }
+
     const dialogRef = this.dialog.open(ConfirmDialog, {
       width: '300px',
       data: { message: 'Salvezi testul ?', title: 'Salveaza' }
@@ -89,8 +109,10 @@ export class CreateTestComponent implements OnInit {
         const test = new Test(this.testName, this.materieSelectata, new Date());
         test.questions = this.questions;
 
+        console.log(JSON.stringify(test));
         this._testsService.setTest(test).subscribe(res => {
           console.log(res);
+          this.router.navigate(['/home']);
         }, (error) => {
           console.log(error);
         });
@@ -100,6 +122,6 @@ export class CreateTestComponent implements OnInit {
 
   isNotTestValid() {
     return !this.materieSelectata || !this.testName
-      || this.totalPuncte() != 10 || this.finishedQuestions() != this.questions.length;
+      || this.totalPuncte() != 10;
   }
 }
