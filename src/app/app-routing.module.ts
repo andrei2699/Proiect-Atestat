@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'denied', component: DeniedComponent },
   {
-    path: 'questions/:test',
+    path: 'questions/:id',
     component: QuestionComponent,
     canActivate: [AuthGuard],
     data: {
@@ -33,7 +33,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'result/:id',
+    path: 'result/:idtest/:id',
     component: ElevresultComponent,
     canActivate: [AuthGuard],
     data: {

@@ -45,6 +45,7 @@ export class SubjectLineComponent implements OnInit {
       this.router.navigate([r]);
     }
   }
+
   GoTo2() {
     const r = '/' + this.link2;
     if (this.params) {

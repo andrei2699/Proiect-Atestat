@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
-import { QUESTIONS } from '../fake-questions';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { ConfirmDialog } from '../../confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { TestsService } from '../tests.service';
 
 @Component({
   selector: 'app-question',
@@ -16,15 +16,20 @@ export class QuestionComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
+    private testService: TestsService,
     public dialog: MatDialog) { }
   response = [];
   questions;
   Rez;
+  idtest;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const materie = params['test'];
-      this.questions = QUESTIONS;
+      const idtest = params['id'];
+      this.idtest = idtest;
+      this.testService.getQuestions(idtest).subscribe(q => {
+        this.questions = q;
+      })
     });
   }
 
@@ -39,17 +44,17 @@ export class QuestionComponent implements OnInit {
         this.Rez = 0;
 
         for (let i = 0; i < this.questions.length; i++) {
-          if (this.response[i] == this.questions[i].correct) {
+          if (this.response[i] - 1 == this.questions[i].correct) {
             this.Rez += this.questions[1].points;
           }
         }
 
-        this.GoTo('result');
+        this.GoTo();
       }
     });
   }
 
-  public GoTo(a: string) {
-    this.router.navigate(['/' + a, this.Rez]);
+  public GoTo() {
+    this.router.navigate(['/result', this.idtest, this.Rez]);
   }
 }

@@ -24,8 +24,9 @@ export class TestComponent implements OnInit {
   }
 
   getTests(materie) {
-    console.log(materie);
     this.testsService.getTests(materie)
-      .subscribe(tests => this.tests = tests);
+      .subscribe(tests => {
+        this.tests = tests;
+      });
   }
 }
