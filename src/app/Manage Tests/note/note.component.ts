@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation,ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NoteService } from '../note.service';
+import { MatTableDataSource,MatSort,MatPaginator } from '@angular/material';
+import { Element } from '@angular/compiler';
 
 
 @Component({
@@ -9,23 +11,35 @@ import { NoteService } from '../note.service';
   styleUrls: ['./note.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class NoteComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
   private noteService: NoteService) { }
-
+  
   note;
-
-  ngOnInit() {/*
+  dataSource = new MatTableDataSource();
+  
+  ngOnInit() {
   this.route.params.subscribe(params => {
     const materie = params['materie'];
     this.getNote(materie);
-  });*/
-  }/*
- getNote(materie) {
+  });
+  }
+  
+  displayedColumns = ['Data', 'Nume Test', 'Nota'];
+  
+
+  getNote(materie) {
   console.log(materie);
   this.noteService.getNote(materie)
-    .subscribe(note => this.note = note);
-*/
+    .subscribe((note: any[]) =>{ this.dataSource.data = note});
+}
+@ViewChild(MatSort) sort: MatSort;
+@ViewChild(MatPaginator) paginator: MatPaginator;
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
 }

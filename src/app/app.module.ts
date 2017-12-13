@@ -12,7 +12,8 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
   MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
-  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule,MatPaginatorModule,
+  MatSortModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -95,7 +96,9 @@ import { NoteComponent } from './Manage Tests/note/note.component';
     MatListModule,
     MatGridListModule,
     MatButtonToggleModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   entryComponents: [
     ConfirmDialog

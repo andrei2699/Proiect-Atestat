@@ -1,3 +1,7 @@
-.card-witdth {
-    width: 300px;
+.list-element{
+  margin: 20px;
 }
+
+.example-margin1 {
+    margin: 0 10px;
+  }

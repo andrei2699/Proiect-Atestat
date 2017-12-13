@@ -1,39 +1,44 @@
-<div fxLayout="column" fxLayoutAlign.xs="center stretch" fxLayoutAlign="center center">
-  <mat-card class="card-witdth upper-margin mat-elevation-z4" *ngFor="let question of questions;let i = index">
-    <mat-card-header>
-      <mat-card-title>
-        <h4>{{question.text}}</h4>
-      </mat-card-title>
-      <mat-card-subtitle>
-        ({{question.points}}
-        <span *ngIf="question.points != 1">puncte)</span>
-        <span *ngIf="question.points == 1">punct)</span>
-      </mat-card-subtitle>
-    </mat-card-header>
+<div fxLayout="column" fxLayoutAlign="space-around center" class="upper-margin">
+  <div class="list-element" *ngFor="let question of questions;let i = index">
 
-    <mat-card-content>
-      <mat-radio-group fxLayout="column" fxLayoutAlign="center start" [(ngModel)]="response[i]">
-        <mat-radio-button value=1>
-          <h5>{{question.answer1}}</h5>
-        </mat-radio-button>
-        <mat-radio-button value=2>
-          <h5>{{question.answer2}}</h5>
-        </mat-radio-button>
-        <mat-radio-button value=3>
-          <h5>{{question.answer3}}</h5>
-        </mat-radio-button>
-        <mat-radio-button value=4>
-          <h5> {{question.answer4}}</h5>
-        </mat-radio-button>
-        <mat-radio-button value=5>
-          <h5> {{question.answer5}}</h5>
-        </mat-radio-button>
-      </mat-radio-group>
-    </mat-card-content>
-  </mat-card>
-</div>
+    <mat-card>
+      <mat-card-header>
 
-<div class="upper-margin" fxLayout="column" fxLayoutAlign="center center">
+        <mat-card-title>
+          <h4>{{question.text}}</h4>
+        </mat-card-title>
+        <mat-card-subtitle>
+          ({{question.points}}
+          <span *ngIf="question.points != 1">puncte)</span>
+          <span *ngIf="question.points == 1">punct)</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-radio-group [(ngModel)]="response[i]">
+          <mat-radio-button value=1>
+            <h5>{{question.answer1}}</h5>
+          </mat-radio-button>
+          <mat-radio-button value=2>
+            <h5>{{question.answer2}}</h5>
+          </mat-radio-button>
+          <mat-radio-button value=3>
+            <h5>{{question.answer3}}</h5>
+          </mat-radio-button>
+          <mat-radio-button value=4>
+            <h5> {{question.answer4}}</h5>
+          </mat-radio-button>
+          <mat-radio-button value=5>
+            <h5> {{question.answer5}}</h5>
+          </mat-radio-button>
+          <mat-radio-button value=6>
+            <h5> {{question.answer6}}</h5>
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
   <button mat-raised-button (click)="alert()" color=warn>
     <h2>Submit</h2>
   </button>
