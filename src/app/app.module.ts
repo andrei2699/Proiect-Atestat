@@ -22,6 +22,7 @@ import { AdminPageComponent } from './Manage Users/admin-page/admin-page.compone
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './Manage Users/data-getter.service';
 import { TestsService } from './Manage Tests/tests.service';
+import { NoteService } from './Manage Tests/note.service';
 import { QuestionComponent } from './Manage Tests/question/question.component';
 import { ElevresultComponent } from './Manage Tests/elevresult/elevresult.component';
 import { MatRadioModule } from '@angular/material/radio';
@@ -34,6 +35,7 @@ import { ElevHomeComponent } from './Homepages/elev-home/elev-home.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
 import { ProfHomeComponent } from './Homepages/prof-home/prof-home.component';
 import { AdminHomeComponent } from './Homepages/admin-home/admin-home.component';
+import { NoteComponent } from './Manage Tests/note/note.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { AdminHomeComponent } from './Homepages/admin-home/admin-home.component'
     CreateTestComponent,
     ProfHomeComponent,
     AdminHomeComponent,
+    NoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,7 @@ import { AdminHomeComponent } from './Homepages/admin-home/admin-home.component'
   entryComponents: [
     ConfirmDialog
   ],
-  providers: [AuthService, AuthGuard, DataGetterService, TestsService],
+  providers: [AuthService, AuthGuard, DataGetterService, TestsService,NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

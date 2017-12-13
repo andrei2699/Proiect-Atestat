@@ -6,19 +6,16 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 
 @Injectable()
-export class TestsService {
+export class NoteService {
 
   constructor(
     private http: HttpClient) { }
 
-  private testsUrl = 'api/getTests.php';
+  private ScoresUrl = 'api/getScore.php';
 
-  getTests(materie) {
-    return this.http.post(this.testsUrl, { Materie: materie });
-  }
-
-  setTest(test) {
-    return this.http.post(this.testsUrl, { test: test });
+  getNote(materie) {
+    return this.http.post(this.ScoresUrl, { Materie: materie });
   }
 }
+
 

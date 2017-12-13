@@ -16,6 +16,8 @@ export class SubjectLineComponent implements OnInit {
   @Input()
   link;
   @Input()
+  link2;
+  @Input()
   title;
   @Input()
   firstButtonText: string;
@@ -37,6 +39,14 @@ export class SubjectLineComponent implements OnInit {
 
   GoTo() {
     const r = '/' + this.link;
+    if (this.params) {
+      this.router.navigate([r, this.params]);
+    } else {
+      this.router.navigate([r]);
+    }
+  }
+  GoTo2() {
+    const r = '/' + this.link2;
     if (this.params) {
       this.router.navigate([r, this.params]);
     } else {

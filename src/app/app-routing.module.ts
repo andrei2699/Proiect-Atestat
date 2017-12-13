@@ -12,6 +12,8 @@ import { AdminPageComponent } from './Manage Users/admin-page/admin-page.compone
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
+import { NoteComponent } from './Manage Tests/note/note.component';
+
 
 const routes: Routes = [
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'test/:materie',
     component: TestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['elev']
+    }
+  },
+  {
+    path: 'note/:materie',
+    component: NoteComponent,
     canActivate: [AuthGuard],
     data: {
       roles: ['elev']
