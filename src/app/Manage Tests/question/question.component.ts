@@ -45,7 +45,7 @@ export class QuestionComponent implements OnInit {
 
         for (let i = 0; i < this.questions.length; i++) {
           if (this.response[i] - 1 == this.questions[i].correct) {
-            this.Rez += this.questions[1].points;
+            this.Rez += this.questions[i].points;
           }
         }
 
