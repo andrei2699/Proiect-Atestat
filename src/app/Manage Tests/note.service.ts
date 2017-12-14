@@ -16,9 +16,13 @@ export class NoteService {
       this.userId=decodedToken.data.id;
      }
     private ScoresUrl = 'api/getScore.php';
+    private ScoresProfUrl = 'api/getScoreProf.php';
 
   getNote(materie) {
     return this.http.post(this.ScoresUrl, { Materie: materie,IdUser: this.userId});
+  }
+  getNoteProf(materie) {
+    return this.http.post(this.ScoresProfUrl, { Materie: materie });
   }
 }
 

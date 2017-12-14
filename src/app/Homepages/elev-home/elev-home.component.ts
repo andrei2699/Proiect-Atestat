@@ -11,8 +11,6 @@ export class ElevHomeComponent implements OnInit {
 
   subjects = MATERII;
   constructor() { }
-
-  ngOnInit() {
-  }
-
+  
+  ngOnInit() {  }
 }
