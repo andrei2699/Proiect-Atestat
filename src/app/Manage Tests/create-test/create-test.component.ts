@@ -117,15 +117,26 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const test = new Test(this.testName, this.materieSelectata, new Date());
+        var d = new Date();
+        var date = d.getFullYear() + '-' + d.getMonth() + "-" + d.getDate();
+        const test = new Test(this.testName, this.materieSelectata, date);
         test.questions = this.questions;
 
-        console.log(JSON.stringify(test));
         this._testsService.setTest(test).subscribe(res => {
-          console.log(res);
-          this.router.navigate(['/home']);
-          this.goHome = true;
+          const r = this.snackBar.open('Test creat cu succes !', '', {
+            duration: 2000,
+          });
+          r.afterDismissed().subscribe(a => {
+            console.log(res);
+            this.router.navigate(['/home']);
+            this.goHome = true;
+          });
         }, (error) => {
+          if (error.status == 409) {
+            this.snackBar.open('Numele testul pentru materia ' + this.materieSelectata + ' deja exista !', '', {
+              duration: 2000,
+            });
+          }
           console.log(error);
         });
       }

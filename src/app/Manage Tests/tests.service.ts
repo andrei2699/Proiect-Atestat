@@ -12,15 +12,20 @@ export class TestsService {
     private _jwtHelperService: JwtHelperService) { }
 
   private testsUrl = 'api/getTests.php';
+  private uploadTestUrl = 'api/index2.php';
   private questionsUrl = 'api/getQuestions.php';
   private setScoreUrl = 'api/setScore.php';
 
   getTests(materie) {
-    return this.http.post(this.testsUrl, { Materie: materie });
+    const token = sessionStorage.getItem('token');
+    const decodedToken = this._jwtHelperService.decodeToken(token);
+    const iduser = decodedToken.data.id;
+    return this.http.post(this.testsUrl, { Materie: materie, iduser: iduser });
   }
 
   setTest(test) {
-    return this.http.post(this.testsUrl, { test: test });
+    console.log(test);
+    return this.http.post(this.uploadTestUrl, { test: test });
   }
 
   getQuestions(idtest) {
