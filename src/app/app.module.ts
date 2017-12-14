@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './Manage Users/auth/auth.service';
 import { LoginComponent } from './Manage Users/login/login.component';
@@ -12,7 +13,7 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
   MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
-  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule,MatPaginatorModule,
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule, MatPaginatorModule,
   MatSortModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -103,7 +104,7 @@ import { NoteComponent } from './Manage Tests/note/note.component';
   entryComponents: [
     ConfirmDialog
   ],
-  providers: [AuthService, AuthGuard, DataGetterService, TestsService,NoteService],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, AuthService, AuthGuard, DataGetterService, TestsService, NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
