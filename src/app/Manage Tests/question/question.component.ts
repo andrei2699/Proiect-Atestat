@@ -55,6 +55,9 @@ export class QuestionComponent implements OnInit {
   }
 
   public GoTo() {
-    this.router.navigate(['/result', this.idtest, this.Rez]);
+
+    this.testService.uploadTest(this.idtest, this.Rez).subscribe(r => {
+      this.router.navigate(['/result', this.idtest, this.Rez]);
+    });
   }
 }
