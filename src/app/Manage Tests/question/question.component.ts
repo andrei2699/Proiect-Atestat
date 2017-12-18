@@ -24,26 +24,13 @@ export class QuestionComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private testService: TestsService,
-<<<<<<< HEAD
-    public dialog: MatDialog) {  }
-=======
-    private noteService: NoteService,
     public dialog: MatDialog,
-    private http: HttpClient,
-    private _jwtHelperService: JwtHelperService) 
-    {
-      const token = sessionStorage.getItem('token');
-      const decodedToken = this._jwtHelperService.decodeToken(token);
-      this.userId=decodedToken.data.id;
-    }
-
->>>>>>> 81286b7f36d24156ee536715b358c4bb4c34b9dc
+    private noteService: NoteService) {  }
   response = [];
   questions;
   Rez;
   idtest;
   nota;
-  ok=1;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -56,12 +43,6 @@ export class QuestionComponent implements OnInit {
         this.nota = a;
       })
     });
-    
-    /*if(this.nota==null)
-     {
-       this.ok=0;
-       console.log(this.nota.lenght);
-     }*/
   }
 
   alert() {
@@ -86,6 +67,6 @@ export class QuestionComponent implements OnInit {
   }
 
   public GoTo() {
-    this.router.navigate(['/result', this.idtest, this.Rez]);
+    this.router.navigate(['/result', this.idtest]);
   } 
 }
