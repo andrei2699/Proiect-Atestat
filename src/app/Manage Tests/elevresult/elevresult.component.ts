@@ -24,7 +24,7 @@ export class ElevresultComponent implements OnInit {
     this.test = this.route.params.subscribe(params => {
       const idtest = +params['idtest'];
       this.nota = +params['id'];
-      this.testService.uploadTest(idtest, this.nota).subscribe();
+      //this.testService.uploadTest(idtest, this.nota).subscribe();
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject,Injectable } from '@angular/core';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { ConfirmDialog } from '../../confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -11,13 +11,14 @@ import { TestsService } from '../tests.service';
   styleUrls: ['./question.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+@Injectable()
 
 export class QuestionComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private testService: TestsService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {  }
   response = [];
   questions;
   Rez;
@@ -48,7 +49,7 @@ export class QuestionComponent implements OnInit {
             this.Rez += this.questions[i].points;
           }
         }
-
+        this.testService.uploadTest(this.idtest, this.Rez).subscribe();
         this.GoTo();
       }
     });
@@ -56,5 +57,5 @@ export class QuestionComponent implements OnInit {
 
   public GoTo() {
     this.router.navigate(['/result', this.idtest, this.Rez]);
-  }
+  } 
 }
