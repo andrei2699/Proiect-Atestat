@@ -1,3 +1,4 @@
+<div *ngIf="ok==0">
 <div fxLayout="column" fxLayoutAlign="center center">
   <mat-card class="card-witdth upper-margin mat-elevation-z4" *ngFor="let question of questions;let i = index">
     <mat-card-header>
@@ -31,9 +32,20 @@
       </mat-radio-group>
     </mat-card-content>
   </mat-card>
+  <p>Ai dat deja testul si ai obtinut nota</p>  
+  <ul>
+    <li *ngFor="let element of nota"> {{element.Score}} </li>
+    </ul>
 </div>
 <div class="upper-margin" fxLayout="column" fxLayoutAlign="center center">
   <button mat-raised-button (click)="alert()" color=warn>
     <h2>Submit</h2>
   </button>
+</div>
+</div>
+<div *ngIf="ok==1">
+  <p>Ai dat deja testul si ai obtinut nota</p>  
+  <ul>
+    <li *ngFor="let element of nota"> {{element.Score}} </li>
+    </ul>
 </div>

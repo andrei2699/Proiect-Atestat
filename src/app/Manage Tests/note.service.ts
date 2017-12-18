@@ -17,12 +17,16 @@ export class NoteService {
      }
     private ScoresUrl = 'api/getScore.php';
     private ScoresProfUrl = 'api/getScoreProf.php';
+    private NotaUrl = 'api/Score.php';
 
   getNote(materie) {
     return this.http.post(this.ScoresUrl, { Materie: materie,IdUser: this.userId});
   }
   getNoteProf(materie) {
     return this.http.post(this.ScoresProfUrl, { Materie: materie });
+  }
+  getNota(idtest){
+    return this.http.post(this.NotaUrl, { IDtest: idtest,IdUser: this.userId});
   }
 }
 
