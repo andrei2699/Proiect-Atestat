@@ -25,17 +25,6 @@ export class NoteComponent implements OnInit {
     const materie = params['materie'];
     this.getNote(materie);
   });
-  
-  if( window.localStorage )
-  {
-    if( !localStorage.getItem('firstLoad') )
-      {
-        localStorage['firstLoad'] = true;
-        window.location.reload();
-      }  
-    else
-    localStorage.removeItem('firstLoad');
-    }
 } 
   displayedColumns = ['Data', 'Nume Test', 'Nota'];
   
