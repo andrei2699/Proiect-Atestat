@@ -4,6 +4,10 @@ import { ConfirmDialog } from '../../confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { TestsService } from '../tests.service';
+import { NoteService } from '../note.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { empty } from 'rxjs/Observer';
 
 @Component({
   selector: 'app-question',
@@ -15,14 +19,31 @@ import { TestsService } from '../tests.service';
 
 export class QuestionComponent implements OnInit {
 
+  userId;
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private testService: TestsService,
+<<<<<<< HEAD
     public dialog: MatDialog) {  }
+=======
+    private noteService: NoteService,
+    public dialog: MatDialog,
+    private http: HttpClient,
+    private _jwtHelperService: JwtHelperService) 
+    {
+      const token = sessionStorage.getItem('token');
+      const decodedToken = this._jwtHelperService.decodeToken(token);
+      this.userId=decodedToken.data.id;
+    }
+
+>>>>>>> 81286b7f36d24156ee536715b358c4bb4c34b9dc
   response = [];
   questions;
   Rez;
   idtest;
+  nota;
+  ok=1;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -31,7 +52,16 @@ export class QuestionComponent implements OnInit {
       this.testService.getQuestions(idtest).subscribe(q => {
         this.questions = q;
       })
+      this.noteService.getNota(idtest).subscribe(a => {
+        this.nota = a;
+      })
     });
+    
+    /*if(this.nota==null)
+     {
+       this.ok=0;
+       console.log(this.nota.lenght);
+     }*/
   }
 
   alert() {
