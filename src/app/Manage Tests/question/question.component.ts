@@ -61,7 +61,6 @@ export class QuestionComponent implements OnInit {
             this.Rez += this.questions[i].points;
           }
         }
-        this.testService.uploadTest(this.idtest, this.Rez).subscribe();
         this.GoTo();
       }
     });

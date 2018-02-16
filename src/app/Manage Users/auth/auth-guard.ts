@@ -13,7 +13,7 @@ export interface CanComponentDeactivate {
 }
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanDeactivate<CanComponentDeactivate>{
+export class AuthGuard implements CanActivate, CanDeactivate<CanComponentDeactivate> {
 
     returnUrl: string;
 
