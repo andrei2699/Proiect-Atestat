@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Inject,Injectable } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, Injectable } from '@angular/core';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { ConfirmDialog } from '../../confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -25,7 +25,7 @@ export class QuestionComponent implements OnInit {
     private route: ActivatedRoute,
     private testService: TestsService,
     public dialog: MatDialog,
-    private noteService: NoteService) {  }
+    private noteService: NoteService) { }
   response = [];
   questions;
   Rez;
@@ -38,10 +38,11 @@ export class QuestionComponent implements OnInit {
       this.idtest = idtest;
       this.testService.getQuestions(idtest).subscribe(q => {
         this.questions = q;
-      })
+      });
+
       this.noteService.getNota(idtest).subscribe(a => {
         this.nota = a;
-      })
+      });
     });
   }
 
@@ -56,7 +57,7 @@ export class QuestionComponent implements OnInit {
         this.Rez = 0;
 
         for (let i = 0; i < this.questions.length; i++) {
-          if (this.response[i] - 1 == this.questions[i].correct) {
+          if (this.response[i] - 1 === this.questions[i].correct) {
             this.Rez += this.questions[i].points;
           }
         }
@@ -67,7 +68,8 @@ export class QuestionComponent implements OnInit {
   }
 
   public GoTo() {
- this.testService.uploadTest(this.idtest, this.Rez).subscribe(r => {
+    this.testService.uploadTest(this.idtest, this.Rez).subscribe(r => {
       this.router.navigate(['/result', this.idtest, this.Rez]);
     });
+  }
 }
