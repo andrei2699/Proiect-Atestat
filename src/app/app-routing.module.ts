@@ -36,7 +36,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'result/:idtest',
+    path: 'result/:idtest/:id',
     component: ElevresultComponent,
     canActivate: [AuthGuard],
     data: {
