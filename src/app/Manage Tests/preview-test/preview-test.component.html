@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{test.Title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{test.Materie}}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <div *ngFor="let q of test.questions" fxLayout="row" fxLayoutGap="8px">
+        <span>{{q.text}}</span>
+        <span fxFlex></span>
+        <span>Puncte: {{q.points}}</span>
+      </div>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button color="accent" (click)="closeDialog()">INCHIDE</button>
+  </mat-card-actions>
+</mat-card>

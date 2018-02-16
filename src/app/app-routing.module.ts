@@ -14,6 +14,8 @@ import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
 import { NoteComponent } from './Manage Tests/note/note.component';
 import { NoteprofComponent } from './Manage Tests/noteprof/noteprof.component';
+import { GiveTestComponent } from './Manage Tests/give-test/give-test.component';
+import { PreviewTestComponent } from './Manage Tests/preview-test/preview-test.component';
 
 
 const routes: Routes = [
@@ -71,6 +73,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       roles: ['profesor', 'elev']
+    }
+  },
+  {
+    path: 'give-test',
+    component: GiveTestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['profesor']
     }
   },
   {

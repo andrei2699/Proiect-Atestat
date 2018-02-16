@@ -11,6 +11,7 @@ import { MATERII } from '../../Manage Tests/fake-questions';
 export class ProfHomeComponent implements OnInit {
 
   createTestLink = '/create-test';
+  launchTestLink = '/give-test';
   nume: string;
   materie: string;
   materii = MATERII;
@@ -26,5 +27,9 @@ export class ProfHomeComponent implements OnInit {
     } else {
       this.router.navigate([this.createTestLink, this.nume, this.materie]);
     }
+  }
+
+  GoToLaunchTest() {
+    this.router.navigateByUrl(this.launchTestLink);
   }
 }
