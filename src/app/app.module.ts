@@ -38,6 +38,7 @@ import { CreateTestComponent } from './Manage Tests/create-test/create-test.comp
 import { ProfHomeComponent } from './Homepages/prof-home/prof-home.component';
 import { AdminHomeComponent } from './Homepages/admin-home/admin-home.component';
 import { NoteComponent } from './Manage Tests/note/note.component';
+import { NoteprofComponent } from './Manage Tests/noteprof/noteprof.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { NoteComponent } from './Manage Tests/note/note.component';
     ProfHomeComponent,
     AdminHomeComponent,
     NoteComponent,
+    NoteprofComponent,
   ],
   imports: [
     BrowserModule,

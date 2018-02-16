@@ -43,6 +43,17 @@ export class LoginComponent implements OnInit {
         console.log(loggedIn);
         this.checkingCredentials = false;
         this._router.navigateByUrl(this.returnUrl);
+        
+        if( window.localStorage )
+        {
+          if( !localStorage.getItem('firstLoad') )
+            {
+              localStorage['firstLoad'] = true;
+              window.location.reload();
+            }  
+          else
+          localStorage.removeItem('firstLoad');
+          }
       },
       (error) => {
         this.usernameOrPasswordWrong = true;

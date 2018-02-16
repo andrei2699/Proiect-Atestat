@@ -3,6 +3,12 @@
     <button mat-button (click)="goToLink('home')">Acasa</button>
     <button *ngIf="isRole('admin')" mat-button (click)="goToLink('admin-page')">Pagina Admin</button>
     <button fxHide.xs="true" *ngIf="isRole('profesor')" mat-button (click)="goToLink('create-test')">Creare Test</button>
+    
+    <button class="button1" mat-button [matMenuTriggerFor]="menu1" fxHide.xs="true" *ngIf="isRole('profesor')">Vezi note</button>
+        <mat-menu #menu1="matMenu" >
+          <button class="button1" mat-menu-item *ngFor="let subject of subjects" (click)="goTonoteprof(subject)">{{subject}}</button>
+        </mat-menu>
+      
     <span fxFlex></span>
     <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="goToLink('login')">Autentificare</button>
     <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="goToLink('register')">Inregistrare</button>

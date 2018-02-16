@@ -43,6 +43,16 @@ export class RegisterComponent implements OnInit {
         }, (error) => {
           console.log(error);
         });
+        if( window.localStorage )
+        {
+          if( !localStorage.getItem('firstLoad') )
+            {
+              localStorage['firstLoad'] = true;
+              window.location.reload();
+            }  
+          else
+          localStorage.removeItem('firstLoad');
+          }
       },
       (error) => {
         console.log(error);

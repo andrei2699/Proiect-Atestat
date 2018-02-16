@@ -25,10 +25,14 @@ export class NoteComponent implements OnInit {
     const materie = params['materie'];
     this.getNote(materie);
   });
-  }
-  
+} 
   displayedColumns = ['Data', 'Nume Test', 'Nota'];
   
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
 
   getNote(materie) {
   console.log(materie);
