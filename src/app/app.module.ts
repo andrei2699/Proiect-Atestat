@@ -13,11 +13,11 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
   MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
-  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule, MatPaginatorModule,
-  MatSortModule
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule,
+  MatPaginatorModule, MatSortModule, MatAutocompleteModule, MatOptionModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeniedComponent } from './denied/denied.component';
 import { HomepageComponent } from './Homepages/homepage/homepage.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
@@ -38,6 +38,9 @@ import { CreateTestComponent } from './Manage Tests/create-test/create-test.comp
 import { ProfHomeComponent } from './Homepages/prof-home/prof-home.component';
 import { AdminHomeComponent } from './Homepages/admin-home/admin-home.component';
 import { NoteComponent } from './Manage Tests/note/note.component';
+import { NoteprofComponent } from './Manage Tests/noteprof/noteprof.component';
+import { GiveTestComponent } from './Manage Tests/give-test/give-test.component';
+import { PreviewTestComponent } from './Manage Tests/preview-test/preview-test.component';
 
 @NgModule({
   declarations: [
@@ -59,10 +62,14 @@ import { NoteComponent } from './Manage Tests/note/note.component';
     ProfHomeComponent,
     AdminHomeComponent,
     NoteComponent,
+    NoteprofComponent,
+    GiveTestComponent,
+    PreviewTestComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -79,6 +86,7 @@ import { NoteComponent } from './Manage Tests/note/note.component';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatAutocompleteModule,
     MatIconModule,
     MatToolbarModule,
     MatFormFieldModule,
@@ -102,9 +110,11 @@ import { NoteComponent } from './Manage Tests/note/note.component';
     MatSortModule
   ],
   entryComponents: [
-    ConfirmDialog
+    ConfirmDialog,
+    PreviewTestComponent
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, AuthService, AuthGuard, DataGetterService, TestsService, NoteService],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, AuthService, AuthGuard,
+    DataGetterService, TestsService, NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 export class DataGetterService {
 
   getRolesUrl = 'api/getRoles.php';
+  getAllEleviUrl = 'api/getAllElevi.php';
   manageUsersUrl = 'api/manageUsers.php';
   requestRoleUrl = 'api/requestRole.php';
   manageRequestedRolesUrl = 'api/manageRequestedRoles.php';
@@ -20,6 +21,10 @@ export class DataGetterService {
 
   getUsers() {
     return this.http.get(this.manageUsersUrl);
+  }
+
+  getAllElevi() {
+    return this.http.get(this.getAllEleviUrl);
   }
 
   changePassword(userId, newPass) {

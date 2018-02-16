@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { TestsService } from '../tests.service';
+import { NoteService } from '../note.service';
 
 @Component({
   selector: 'app-elevresult',
@@ -14,7 +15,8 @@ export class ElevresultComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private testService: TestsService) {
+    private testService: TestsService,
+    private noteService: NoteService) {
   }
 
   test;

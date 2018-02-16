@@ -13,6 +13,9 @@ import { RequestRoleComponent } from './Manage Users/request-role/request-role.c
 import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
 import { NoteComponent } from './Manage Tests/note/note.component';
+import { NoteprofComponent } from './Manage Tests/noteprof/noteprof.component';
+import { GiveTestComponent } from './Manage Tests/give-test/give-test.component';
+import { PreviewTestComponent } from './Manage Tests/preview-test/preview-test.component';
 
 
 const routes: Routes = [
@@ -33,7 +36,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'result/:idtest/:id',
+    path: 'result/:idtest',
     component: ElevresultComponent,
     canActivate: [AuthGuard],
     data: {
@@ -57,11 +60,27 @@ const routes: Routes = [
     }
   },
   {
+    path: 'noteprof/:materie',
+    component: NoteprofComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['profesor']
+    }
+  },
+  {
     path: 'request-role',
     component: RequestRoleComponent,
     canActivate: [AuthGuard],
     data: {
       roles: ['profesor', 'elev']
+    }
+  },
+  {
+    path: 'give-test',
+    component: GiveTestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['profesor']
     }
   },
   {
