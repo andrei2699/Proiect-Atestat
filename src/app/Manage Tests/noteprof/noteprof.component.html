@@ -1,16 +1,19 @@
 <div class="example-container mat-elevation-z8">
-
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Data">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Data adaugarii testului (an/luna/zi) </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Data(an/luna/zi) </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nume utilizator </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Nume Test">
@@ -18,11 +21,9 @@
       <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Start Test">
-      <mat-header-cell *matHeaderCellDef> Incepe Testul </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <button mat-raised-button (click)="GoTo(element.ID)" color="primary">Start</button>
-      </mat-cell>
+    <ng-container matColumnDef="Nota">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nota obtinuta </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Score}} </mat-cell>
     </ng-container>
 
 

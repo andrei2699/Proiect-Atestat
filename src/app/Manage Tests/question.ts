@@ -7,7 +7,7 @@ export class Question {
     answer5;
     correct;
     points;
-    finished;
+    answers = [];
 
     constructor(t?, a1?, a2?, a3?, a4?, a5?, c?, p = 1) {
         this.text = t;
@@ -18,5 +18,6 @@ export class Question {
         this.answer5 = a5;
         this.correct = c;
         this.points = p;
+        this.answers.push(a1, a2, a3, a4, a5);
     }
 }

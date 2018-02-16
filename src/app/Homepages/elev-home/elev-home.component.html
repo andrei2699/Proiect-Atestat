@@ -1,0 +1,8 @@
+
+<div class="upper-margin" fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column" fxLayoutAlign.xs="center stretch"
+  fxLayoutWrap>
+  <div class="c" *ngFor="let subject of subjects">
+    <app-subject-line [link]="'test'" [link2]="'note'" [params]="subject" [title]="subject" [firstButtonText]="'Teste active'" [secondButtonText]="'Teste date'">
+    </app-subject-line>
+  </div>
+</div>

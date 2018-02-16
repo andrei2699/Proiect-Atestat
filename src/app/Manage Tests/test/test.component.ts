@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TestsService } from '../tests.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 
 @Component({
   selector: 'app-test',
@@ -11,10 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 export class TestComponent implements OnInit {
 
   constructor(private testsService: TestsService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, private router: Router) {
   }
 
   tests;
+  dataSource = new MatTableDataSource();
+  displayedColumns = ['Data', 'Nume Test', 'Start Test'];
+
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -24,8 +29,19 @@ export class TestComponent implements OnInit {
   }
 
   getTests(materie) {
-    console.log(materie);
-    this.testsService.getTests(materie)
-      .subscribe(tests => this.tests = tests);
+    this.testsService.getGivenTests(materie)
+      .subscribe((tests: any[]) => {
+        this.dataSource.data = tests;
+      });
   }
+  GoTo(a) {
+    this.router.navigate(['/questions', a]);
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
 }

@@ -6,3 +6,7 @@
     justify-content: space-between;
     align-items: center;
   }
+  .radio-button {
+      margin-top: 16px;
+      margin-right: 16px;
+  }

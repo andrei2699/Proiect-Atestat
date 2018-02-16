@@ -4,7 +4,7 @@ import { TestComponent } from './Manage Tests/test/test.component';
 import { AuthGuard } from './Manage Users/auth/auth-guard';
 import { LoginComponent } from './Manage Users/login/login.component';
 import { DeniedComponent } from './denied/denied.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './Homepages/homepage/homepage.component';
 import { ElevresultComponent } from './Manage Tests/elevresult/elevresult.component';
 import { QuestionComponent } from './Manage Tests/question/question.component';
 import { RegisterComponent } from './Manage Users/register/register.component';
@@ -12,6 +12,11 @@ import { AdminPageComponent } from './Manage Users/admin-page/admin-page.compone
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
+import { NoteComponent } from './Manage Tests/note/note.component';
+import { NoteprofComponent } from './Manage Tests/noteprof/noteprof.component';
+import { GiveTestComponent } from './Manage Tests/give-test/give-test.component';
+import { PreviewTestComponent } from './Manage Tests/preview-test/preview-test.component';
+
 
 const routes: Routes = [
   {
@@ -23,7 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'denied', component: DeniedComponent },
   {
-    path: 'questions/:test',
+    path: 'questions/:id',
     component: QuestionComponent,
     canActivate: [AuthGuard],
     data: {
@@ -31,7 +36,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'result/:id',
+    path: 'result/:idtest',
     component: ElevresultComponent,
     canActivate: [AuthGuard],
     data: {
@@ -47,6 +52,22 @@ const routes: Routes = [
     }
   },
   {
+    path: 'note/:materie',
+    component: NoteComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['elev']
+    }
+  },
+  {
+    path: 'noteprof/:materie',
+    component: NoteprofComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['profesor']
+    }
+  },
+  {
     path: 'request-role',
     component: RequestRoleComponent,
     canActivate: [AuthGuard],
@@ -55,9 +76,27 @@ const routes: Routes = [
     }
   },
   {
+    path: 'give-test',
+    component: GiveTestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['profesor']
+    }
+  },
+  {
     path: 'create-test',
     component: CreateTestComponent,
     canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard],
+    data: {
+      roles: ['profesor']
+    }
+  },
+  {
+    path: 'create-test/:nume/:materie',
+    component: CreateTestComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard],
     data: {
       roles: ['profesor']
     }

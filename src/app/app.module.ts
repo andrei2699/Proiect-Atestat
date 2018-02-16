@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './Manage Users/auth/auth.service';
 import { LoginComponent } from './Manage Users/login/login.component';
@@ -12,16 +13,18 @@ import { AuthGuard } from './Manage Users/auth/auth-guard';
 import {
   MatCardModule, MatButtonModule, MatInputModule, MatIconModule, MatToolbarModule,
   MatFormFieldModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatDialogModule,
-  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule
+  MatProgressSpinnerModule, MatSelectModule, MatTabsModule, MatListModule, MatExpansionModule, MatGridListModule, MatButtonToggleModule,
+  MatPaginatorModule, MatSortModule, MatAutocompleteModule, MatOptionModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeniedComponent } from './denied/denied.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './Homepages/homepage/homepage.component';
 import { AdminPageComponent } from './Manage Users/admin-page/admin-page.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { DataGetterService } from './Manage Users/data-getter.service';
 import { TestsService } from './Manage Tests/tests.service';
+import { NoteService } from './Manage Tests/note.service';
 import { QuestionComponent } from './Manage Tests/question/question.component';
 import { ElevresultComponent } from './Manage Tests/elevresult/elevresult.component';
 import { MatRadioModule } from '@angular/material/radio';
@@ -30,9 +33,14 @@ import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 import { RequestRoleComponent } from './Manage Users/request-role/request-role.component';
 import { SettingsComponent } from './Manage Users/settings/settings.component';
 import { SubjectLineComponent } from './Manage Tests/subject-line/subject-line.component';
-import { ElevHomeComponent } from './elev-home/elev-home.component';
+import { ElevHomeComponent } from './Homepages/elev-home/elev-home.component';
 import { CreateTestComponent } from './Manage Tests/create-test/create-test.component';
-import { CreateQuestionTestComponent } from './Manage Tests/create-question-test/create-question-test.component';
+import { ProfHomeComponent } from './Homepages/prof-home/prof-home.component';
+import { AdminHomeComponent } from './Homepages/admin-home/admin-home.component';
+import { NoteComponent } from './Manage Tests/note/note.component';
+import { NoteprofComponent } from './Manage Tests/noteprof/noteprof.component';
+import { GiveTestComponent } from './Manage Tests/give-test/give-test.component';
+import { PreviewTestComponent } from './Manage Tests/preview-test/preview-test.component';
 
 @NgModule({
   declarations: [
@@ -51,11 +59,17 @@ import { CreateQuestionTestComponent } from './Manage Tests/create-question-test
     SubjectLineComponent,
     ElevHomeComponent,
     CreateTestComponent,
-    CreateQuestionTestComponent,
+    ProfHomeComponent,
+    AdminHomeComponent,
+    NoteComponent,
+    NoteprofComponent,
+    GiveTestComponent,
+    PreviewTestComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -72,6 +86,7 @@ import { CreateQuestionTestComponent } from './Manage Tests/create-question-test
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatAutocompleteModule,
     MatIconModule,
     MatToolbarModule,
     MatFormFieldModule,
@@ -90,12 +105,16 @@ import { CreateQuestionTestComponent } from './Manage Tests/create-question-test
     MatListModule,
     MatGridListModule,
     MatButtonToggleModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   entryComponents: [
-    ConfirmDialog
+    ConfirmDialog,
+    PreviewTestComponent
   ],
-  providers: [AuthService, AuthGuard, DataGetterService, TestsService],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, AuthService, AuthGuard,
+    DataGetterService, TestsService, NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

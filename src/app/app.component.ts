@@ -3,6 +3,7 @@ import { AuthService } from './Manage Users/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { MATERII } from './Manage Tests/fake-questions';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,8 @@ export class AppComponent {
     private _jwtHelperService: JwtHelperService,
     private router: Router) {
   }
+
+  subjects = MATERII;
 
   logout() {
     this._authService.logout();
@@ -30,5 +33,9 @@ export class AppComponent {
 
   goToLink(link) {
     this.router.navigateByUrl('/' + link);
+  }
+  
+  goTonoteprof(link) {
+    this.router.navigateByUrl('/noteprof/' + link);
   }
 }
