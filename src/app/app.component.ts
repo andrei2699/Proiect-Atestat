@@ -34,8 +34,16 @@ export class AppComponent {
   goToLink(link) {
     this.router.navigateByUrl('/' + link);
   }
-  
+
   goTonoteprof(link) {
     this.router.navigateByUrl('/noteprof/' + link);
+  }
+
+  playSnake() {
+    // for testing
+    // window.open('../assets/Snake/index.html', '_blank');
+
+    // for build
+    window.open('assets/Snake/index.html', '_blank');
   }
 }
