@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-button (click)="goToLink('home')">Acasa</button>
+    <button mat-button (click)="goToLink('home')">Acasă</button>
     <button *ngIf="isRole('admin')" mat-button (click)="goToLink('admin-page')">Pagina Admin</button>
     <button fxHide.xs="true" *ngIf="isRole('profesor')" mat-button (click)="goToLink('create-test')">Creare Test</button>
     <button fxHide.xs="true" *ngIf="isRole('profesor')" mat-button (click)="goToLink('give-test')">Lansare Test</button>
@@ -12,9 +12,9 @@
 
     <span fxFlex></span>
     <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="goToLink('login')">Autentificare</button>
-    <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="goToLink('register')">Inregistrare</button>
+    <button *ngIf="!(_authService.isLoggedIn|async)" mat-button (click)="goToLink('register')">Înregistrare</button>
 
-    <span fxHide.xs="true" *ngIf="(_authService.isLoggedIn|async)">Bine ai revenit, {{_authService.name|async}} !</span>
+    <span fxHide.lt-md="true" *ngIf="(_authService.isLoggedIn|async)">Bine ai revenit, {{_authService.name|async}} !</span>
 
     <button *ngIf="(_authService.isLoggedIn|async)" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
@@ -27,7 +27,7 @@
       </button>
 
       <button fxHide.gt-xs="true" *ngIf="isRole('profesor')" mat-menu-item (click)="goToLink('give-test')">
-        <mat-icon>vpn_key</mat-icon>
+        <mat-icon>send</mat-icon>
         <span>Lansare Test</span>
       </button>
 
@@ -38,7 +38,7 @@
 
       <button mat-menu-item (click)="goToLink('settings')">
         <mat-icon>settings</mat-icon>
-        <span>Setari</span>
+        <span>Setări</span>
       </button>
 
       <button mat-menu-item (click)="goToLink('request-role')">

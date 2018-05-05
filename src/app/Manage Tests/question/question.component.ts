@@ -49,7 +49,7 @@ export class QuestionComponent implements OnInit {
   alert() {
     const dialogRef = this.dialog.open(ConfirmDialog, {
       width: '400px',
-      data: { message: ' ', title: 'Esti sigur ca vrei sa trimiti testul ?' }
+      data: { message: ' ', title: 'Ești sigur că vrei să trimiți testul ?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {

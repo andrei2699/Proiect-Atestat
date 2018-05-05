@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorMessage(field) {
-    return field.hasError('required') ? 'Trebuie sa introduci o valoare' : '';
+    return field.hasError('required') ? 'Trebuie să introduci o valoare validă' : '';
   }
 
   passwordsMatch() {
@@ -43,21 +43,19 @@ export class RegisterComponent implements OnInit {
         }, (error) => {
           console.log(error);
         });
-        if( window.localStorage )
-        {
-          if( !localStorage.getItem('firstLoad') )
-            {
-              localStorage['firstLoad'] = true;
-              window.location.reload();
-            }  
-          else
-          localStorage.removeItem('firstLoad');
+        if (window.localStorage) {
+          if (!localStorage.getItem('firstLoad')) {
+            localStorage['firstLoad'] = true;
+            window.location.reload();
           }
+          else
+            localStorage.removeItem('firstLoad');
+        }
       },
-      (error) => {
-        console.log(error);
-        this.notOk = true;
-      });
+        (error) => {
+          console.log(error);
+          this.notOk = true;
+        });
   }
 
 }

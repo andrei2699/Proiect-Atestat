@@ -1,14 +1,14 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtru">
     </mat-form-field>
   </div>
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Data">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Data(an/luna/zi) </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.Date | date1Pipe}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Username">
@@ -22,7 +22,7 @@
     </ng-container>
 
     <ng-container matColumnDef="Nota">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nota obtinuta </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nota obținută </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.Score}} </mat-cell>
     </ng-container>
 

@@ -9,13 +9,15 @@
   </mat-card-header>
 
   <mat-card-content>
-    <mat-list>
-      <div *ngFor="let q of test.questions" fxLayout="row" fxLayoutGap="8px">
-        <span>{{q.text}}</span>
-        <span fxFlex></span>
-        <span>Puncte: {{q.points}}</span>
+    <div fxLayout="column" fxLayoutGap="8px">
+      <div *ngFor="let q of test.questions">
+        <div fxLayout="row" fxLayoutGap="16px">
+          <span>{{q.text}}</span>
+          <span fxFlex></span>
+          <span>Puncte: {{q.points}}</span>
+        </div>
       </div>
-    </mat-list>
+    </div>
   </mat-card-content>
 
   <mat-card-actions>

@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="upper-margin">
   <mat-list>
 
-    <h3 mat-subheader>Informatii generale</h3>
+    <h3 mat-subheader>Informații generale</h3>
     <mat-accordion>
       <mat-expansion-panel #changePassPanel (opened)="resetChangePassword()">
         <mat-expansion-panel-header>
@@ -9,7 +9,7 @@
             Schimbarea parolei
           </mat-panel-title>
           <mat-panel-description>
-            Schimba-ti parola
+            Schimba-ți parola
           </mat-panel-description>
         </mat-expansion-panel-header>
 
@@ -31,7 +31,7 @@
           <br/>
 
           <button #changePassButton [disabled]="!f.form.valid || !passwordsMatch()" type="submit" mat-raised-button color="primary"
-            (click)="saveNewPassword()">Salveaza</button>
+            (click)="saveNewPassword()">Salvează</button>
         </form>
 
       </mat-expansion-panel>

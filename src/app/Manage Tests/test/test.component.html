@@ -2,15 +2,15 @@
 
   <div class="example-header">
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtru">
     </mat-form-field>
   </div>
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="Data">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Data adaugarii testului (an/luna/zi) </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Data adăugării testului (an/luna/zi) </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Date | date1Pipe}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Nume Test">

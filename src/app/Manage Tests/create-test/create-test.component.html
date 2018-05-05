@@ -1,8 +1,8 @@
 <mat-card class="mat-elevation-z4">
   <mat-card-header>
-    <form fxFlex>
+    <form fxLayout="row" fxLayoutGap="8px" fxLayout.xs="column" fxLayoutAlign.xs="center stretch" fxLayoutWrap>
       <mat-form-field fxFlex>
-        <input matInput placeholder="Denumirea testului" name="testName" [(ngModel)]="testName">
+        <input myNoSpaces matInput placeholder="Denumirea testului" name="testName" [(ngModel)]="testName">
       </mat-form-field>
 
       <div fxFlex></div>
@@ -47,9 +47,9 @@
     </mat-expansion-panel-header>
 
     <form #f="ngForm">
-      <div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="center stretch">
         <mat-form-field fxFlex>
-          <textarea required matInput placeholder="Textul intrebarii" name="questionName" [(ngModel)]="q.text"></textarea>
+          <textarea myNoSpaces matInput placeholder="Textul intrebarii" name="questionName" [(ngModel)]="q.text"></textarea>
         </mat-form-field>
         <span fxFlex="10"></span>
         <div>
@@ -64,7 +64,7 @@
           <div>
             <mat-radio-button value="{{nr}}" class="radio-button"></mat-radio-button>
             <mat-form-field fxFlex="60">
-              <input required matInput placeholder="Varianta de raspuns {{nr+1}}" name="input-{{nr}}" [(ngModel)]="q.answers[nr]">
+              <input myNoSpaces matInput placeholder="Varianta de raspuns {{nr+1}}" name="input-{{nr}}" [(ngModel)]="q.answers[nr]">
             </mat-form-field>
           </div>
         </div>
@@ -87,18 +87,18 @@
 <mat-card class="mat-elevation-z4">
   <mat-card-header>
     <mat-card-title>
-      Informatii despre test
+      Informații despre test
     </mat-card-title>
     <mat-card-subtitle>
       Nume: {{testName}}
       <span *ngIf="!testName">Neselectat</span>
       <br/> Disciplina: {{materieSelectata}}
-      <span *ngIf="!materieSelectata">Neselectata</span>
+      <span *ngIf="!materieSelectata">Neselectată</span>
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    Numar intrebari: {{questions.length}}
-    <br/> Total puncte : {{totalPuncte()}} / 10
+    Număr intrebari: {{questions.length}}
+    <br/> Total de puncte : {{totalPuncte()}} / 10
   </mat-card-content>
 
   <mat-card-actions>
@@ -106,7 +106,7 @@
 
     <button [disabled]="isNotTestValid()" mat-raised-button color="primary" (click)="saveTest()">
       <mat-icon>save</mat-icon>
-      Salveaza
+      Salvează
     </button>
   </mat-card-actions>
 </mat-card>

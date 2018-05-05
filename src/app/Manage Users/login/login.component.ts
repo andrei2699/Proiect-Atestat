@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   getErrorMessage(field) {
-    return field.hasError('required') ? 'Trebuie sa introduci o valoare' : '';
+    return field.hasError('required') ? 'Trebuie să introduci o valoare validă' : '';
   }
 
   login() {
@@ -43,17 +43,15 @@ export class LoginComponent implements OnInit {
         console.log(loggedIn);
         this.checkingCredentials = false;
         this._router.navigateByUrl(this.returnUrl);
-        
-        if( window.localStorage )
-        {
-          if( !localStorage.getItem('firstLoad') )
-            {
-              localStorage['firstLoad'] = true;
-              window.location.reload();
-            }  
-          else
-          localStorage.removeItem('firstLoad');
+
+        if (window.localStorage) {
+          if (!localStorage.getItem('firstLoad')) {
+            localStorage['firstLoad'] = true;
+            window.location.reload();
           }
+          else
+            localStorage.removeItem('firstLoad');
+        }
       },
       (error) => {
         this.usernameOrPasswordWrong = true;

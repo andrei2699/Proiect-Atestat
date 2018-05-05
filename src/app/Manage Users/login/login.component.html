@@ -6,14 +6,14 @@
     <mat-card-content>
       <form #f="ngForm">
         <mat-form-field>
-          <input [(ngModel)]="username" name="username" matInput autocomplete="new-password" placeholder="Utilizator" required>
+          <input [(ngModel)]="username" name="username" matInput autocomplete="new-password" placeholder="Utilizator" myNoSpaces>
           <mat-error *ngIf="user.invalid">{{getErrorMessage(user)}}</mat-error>
         </mat-form-field>
 
         <br/>
 
         <mat-form-field>
-          <input [(ngModel)]="password" name="password" type="password" autocomplete="new-password" matInput placeholder="Parola" required>
+          <input [(ngModel)]="password" name="password" type="password" autocomplete="new-password" matInput placeholder="Parola" myNoSpaces>
           <mat-error *ngIf="pass.invalid">{{getErrorMessage(pass)}}</mat-error>
         </mat-form-field>
         <br/>
@@ -23,7 +23,7 @@
           <mat-spinner></mat-spinner>
         </div>
 
-        <mat-error *ngIf="usernameOrPasswordWrong">Utilizatorul sau parola este gresita !</mat-error>
+        <mat-error *ngIf="usernameOrPasswordWrong">Utilizatorul sau parola este gresită !</mat-error>
 
         <br/>
         <button [disabled]="!f.form.valid || checkingCredentials" type="submit" mat-raised-button (click)="login()" color="primary">Autentificare</button>

@@ -83,7 +83,6 @@ export class GiveTestComponent implements OnInit, AfterViewInit {
         this.currentTests.push(this.tests[i]);
       }
     }
-
   }
 
   selectDeselectAll(value) {
@@ -129,6 +128,7 @@ export class GiveTestComponent implements OnInit, AfterViewInit {
 
   previewTest() {
     this._testService.getQuestionsHeader(this.testSelectat.ID).subscribe(res => {
+
       const dialogRef = this.dialog.open(PreviewTestComponent, {
         data: { Title: this.testSelectat.Title, Materie: this.testSelectat.Materie, questions: res }
       });

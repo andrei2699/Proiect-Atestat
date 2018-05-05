@@ -1,16 +1,16 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Gestioneaza utilizatori</span>
+    <span>Gestionează utilizatori</span>
     <span class="example-spacer"></span>
     <button mat-button [disabled]="!changesMade" (click)="saveChanges()">
       <mat-icon>save</mat-icon>
-      <span *ngIf="onlySaveIcon">Salveaza</span>
+      <span *ngIf="onlySaveIcon">Salvează</span>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-tab-group>
-  <mat-tab label="Gestioneaza Utilizatori">
+  <mat-tab label="Gestionează Utilizatori">
     <mat-table #table [dataSource]="dataSource">
 
       <ng-container matColumnDef="username">
@@ -26,7 +26,7 @@
       </ng-container>
 
       <ng-container matColumnDef="swap">
-        <mat-header-cell *matHeaderCellDef> SCHIMBA PAROLA </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> SCHIMBĂ PAROLA </mat-header-cell>
         <mat-cell *matCellDef="let user">
 
           <button [disabled]="isAdmin(user)" mat-icon-button (click)="swap(user)">
@@ -49,7 +49,7 @@
     </mat-table>
   </mat-tab>
 
-  <mat-tab label="Gestioneaza Cereri">
+  <mat-tab label="Gestionează Cereri">
     <mat-table #table [dataSource]="requestsDataSource">
 
       <ng-container matColumnDef="username">
@@ -72,7 +72,7 @@
       </ng-container>
 
       <ng-container matColumnDef="deny">
-        <mat-header-cell *matHeaderCellDef> Refuza </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Refuză </mat-header-cell>
         <mat-cell *matCellDef="let request">
           <button mat-icon-button color="warn" (click)="manageRequest(request, false)">
             <mat-icon>clear</mat-icon>

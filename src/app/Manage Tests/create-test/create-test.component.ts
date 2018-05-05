@@ -44,7 +44,7 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
     if (this.goHome) {
       return true;
     }
-    return window.confirm('Esti sigur ca vrei sa parasesti pagina ?');
+    return window.confirm('Ești sigur că vrei să părăsești pagina ?');
   }
 
   addQuestion() {
@@ -56,7 +56,7 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
 
     const dialogRef = this.dialog.open(ConfirmDialog, {
       width: '300px',
-      data: { message: 'Esti sigur ca vrei sa stergi intrebarea ?', title: 'Stergere ?' }
+      data: { message: 'Ești sigur că vrei să stergi întrebarea ?', title: 'Stergere ?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -104,7 +104,7 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
     }
 
     if (!allQuestionsValid) {
-      this.snackBar.open('Nu toate intrebarile sunt valide !', '', {
+      this.snackBar.open('Nu toate întrebarile sunt valide !', '', {
         duration: 2000,
       });
       return;
@@ -112,7 +112,7 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
 
     const dialogRef = this.dialog.open(ConfirmDialog, {
       width: '300px',
-      data: { message: 'Salvezi testul ?', title: 'Salveaza' }
+      data: { message: 'Salvezi testul ?', title: 'Salvează' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -133,7 +133,7 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
           });
         }, (error) => {
           if (error.status == 409) {
-            this.snackBar.open('Numele testul pentru materia ' + this.materieSelectata + ' deja exista !', '', {
+            this.snackBar.open('Numele testul pentru materia ' + this.materieSelectata + ' deja există !', '', {
               duration: 2000,
             });
           }
@@ -143,7 +143,16 @@ export class CreateTestComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
+  isJustSpaces(str) {
+    if (!str) return false;
+    if (/\S/.test(str)) {
+      return false;
+    }
+    return true;
+  }
+
   isNotTestValid() {
+    if (this.isJustSpaces(this.testName)) return true;
 
     return !this.materieSelectata || !this.testName
       || this.totalPuncte() != 10;

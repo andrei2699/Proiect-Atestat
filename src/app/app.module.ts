@@ -41,6 +41,8 @@ import { NoteComponent } from './Manage Tests/note/note.component';
 import { NoteprofComponent } from './Manage Tests/noteprof/noteprof.component';
 import { GiveTestComponent } from './Manage Tests/give-test/give-test.component';
 import { PreviewTestComponent } from './Manage Tests/preview-test/preview-test.component';
+import { Date1PipePipe } from './Manage Tests/date-1-pipe.pipe';
+import { NoWhitespaceDirective } from './Manage Users/no-whitespaces.directive';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { PreviewTestComponent } from './Manage Tests/preview-test/preview-test.c
     NoteprofComponent,
     GiveTestComponent,
     PreviewTestComponent,
+    Date1PipePipe,
+    NoWhitespaceDirective,
   ],
   imports: [
     BrowserModule,

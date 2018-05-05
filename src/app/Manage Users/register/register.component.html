@@ -1,26 +1,26 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="upper-margin">
   <mat-card>
     <mat-card-title>
-      Inregistrare
+      Înregistrare
     </mat-card-title>
     <mat-card-content>
       <form #f="ngForm">
         <mat-form-field>
-          <input [(ngModel)]="username" name="username" matInput autocomplete="new-password" placeholder="Utilizator" required>
+          <input [(ngModel)]="username" name="username" matInput autocomplete="new-password" placeholder="Utilizator" myNoSpaces>
           <mat-error *ngIf="user.invalid">{{getErrorMessage(user)}}</mat-error>
         </mat-form-field>
 
         <br/>
 
         <mat-form-field>
-          <input [(ngModel)]="password" name="password" type="password" autocomplete="new-password" matInput placeholder="Parola" required>
+          <input [(ngModel)]="password" name="password" type="password" autocomplete="new-password" matInput placeholder="Parola" myNoSpaces>
           <mat-error *ngIf="pass.invalid">{{getErrorMessage(pass)}}</mat-error>
         </mat-form-field>
         <br/>
 
         <mat-form-field>
           <input [(ngModel)]="confirmPassword" #confirmPasswordEl="ngModel" name="confirmPassword" type="password" autocomplete="new-password"
-            matInput placeholder="Confirmarea parolei" required>
+            matInput placeholder="Confirmarea parolei" myNoSpaces>
 
           <mat-error *ngIf="confPass.invalid">{{getErrorMessage(confPass)}}</mat-error>
           <span matSuffix>
@@ -31,7 +31,7 @@
         <br/>
         <mat-error *ngIf="notOk">Utilizator existent !</mat-error>
         <br/>
-        <button [disabled]="!f.form.valid || !passwordsMatch()" type="submit" mat-raised-button (click)="register()" color="primary">Inregistrare</button>
+        <button [disabled]="!f.form.valid || !passwordsMatch()" type="submit" mat-raised-button (click)="register()" color="primary">Înregistrare</button>
       </form>
     </mat-card-content>
   </mat-card>

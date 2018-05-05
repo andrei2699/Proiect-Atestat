@@ -1,3 +1,9 @@
-.card-witdth {
-  width: 300px;
+.send-button{
+    margin-top: 8px;
+}
+
+@media only screen and (min-width: 600px) {
+    .qcard {
+        width: 512px;
+    }
 }

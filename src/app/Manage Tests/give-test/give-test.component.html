@@ -1,7 +1,8 @@
 <mat-card class="mat-elevation-z4">
-  <mat-card-header>
+  <mat-card-header fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="center stretch">
     <mat-card-title>Alege Test</mat-card-title>
-    <form fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="24px">
+    <form fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="24px" fxLayout.xs="column" fxLayoutAlign.xs="center stretch"
+      fxLayout.sm="column" fxLayoutAlign.sm="center stretch" fxLayoutWrap>
 
       <mat-form-field>
         <mat-select #disciplinaDropdown placeholder="Disciplina" [(ngModel)]="materieSelectata" name="disciplina" (change)="selectChange();">
